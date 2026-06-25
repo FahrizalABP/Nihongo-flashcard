@@ -88,7 +88,18 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 }
 .add-btn:hover{background:var(--red);color:#fff}
 
+.kq-start-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  width:100%;background:var(--red);color:#fff;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;
+  padding:9px 16px;border-radius:10px;border:none;
+  cursor:pointer;transition:all .15s;margin-bottom:18px;
+}
+.kq-start-btn:hover{opacity:.88}
+.kq-start-btn:active{transform:scale(0.98)}
+
 .menu-grid{display:flex;flex-direction:column;gap:12px}
+.menu-grid-kana{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:0}
 .menu-card{
   display:flex;align-items:center;gap:16px;
   border-radius:var(--rl);padding:18px;cursor:pointer;
@@ -99,14 +110,23 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 .menu-card.mc-blue{background:linear-gradient(135deg,#0D2137,#0A1929);border-color:rgba(74,158,226,0.2);box-shadow:0 4px 20px rgba(74,158,226,0.1)}
 .menu-card.mc-red{background:linear-gradient(135deg,#2A0A0A,#1C0606);border-color:rgba(226,75,74,0.2);box-shadow:0 4px 20px rgba(226,75,74,0.1)}
 .menu-card.mc-purple{background:linear-gradient(135deg,#150D2E,#0E0820);border-color:rgba(139,127,232,0.2);box-shadow:0 4px 20px rgba(139,127,232,0.1)}
-.menu-icon{width:54px;height:54px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px}
+.menu-card.mc-green{background:linear-gradient(135deg,#0A2218,#071510);border-color:rgba(76,217,100,0.2);box-shadow:0 4px 20px rgba(76,217,100,0.1)}
+.menu-card.mc-amber{background:linear-gradient(135deg,#241800,#180F00);border-color:rgba(240,165,0,0.2);box-shadow:0 4px 20px rgba(240,165,0,0.1)}
+.menu-icon{width:54px;height:54px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;font-family:'Noto Sans JP',sans-serif;font-weight:700}
 .menu-icon.gr-blue{background:rgba(74,158,226,0.15);border:1px solid rgba(74,158,226,0.25)}
 .menu-icon.gr-red{background:rgba(226,75,74,0.15);border:1px solid rgba(226,75,74,0.25)}
 .menu-icon.gr-purple{background:rgba(139,127,232,0.15);border:1px solid rgba(139,127,232,0.25)}
+.menu-icon.gr-green{background:rgba(76,217,100,0.15);border:1px solid rgba(76,217,100,0.25)}
+.menu-icon.gr-amber{background:rgba(240,165,0,0.15);border:1px solid rgba(240,165,0,0.25)}
 .menu-info{flex:1;min-width:0}
 .menu-title{font-size:17px;font-weight:900;color:#fff;margin-bottom:3px}
 .menu-desc{font-size:12px;color:var(--muted);font-weight:700;line-height:1.4}
 .menu-arrow{font-size:20px;color:var(--muted2);flex-shrink:0}
+.menu-card-sm{flex-direction:column;align-items:center;text-align:center;padding:12px 8px}
+.menu-card-sm .menu-icon{width:40px;height:40px;font-size:22px;border-radius:10px;margin-bottom:6px}
+.menu-card-sm .menu-info{min-width:0;width:100%}
+.menu-card-sm .menu-arrow{display:none}
+.menu-card-sm .menu-title{font-size:14px}
 
 .ic-red{background:var(--red-l)}.ic-blue{background:var(--blue-l)}.ic-green{background:var(--green-l)}.ic-amber{background:var(--amber-l)}.ic-purple{background:var(--purple-l)}
 
@@ -159,35 +179,6 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 .empty-state .es-icon{font-size:44px;margin-bottom:12px}
 .empty-state p{font-size:14px;font-weight:700}
 
-/* ── MODAL ── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:flex-end;justify-content:center}
-.modal-overlay.open{display:flex}
-.modal{background:#1e1e1e;border-radius:24px 24px 0 0;width:100%;max-width:520px;padding:24px 20px 36px;max-height:92vh;overflow-y:auto;animation:slideUp .22s ease;border-top:1px solid var(--border)}
-@keyframes slideUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-handle{width:40px;height:4px;background:rgba(255,255,255,0.15);border-radius:99px;margin:0 auto 20px}
-.modal-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:6px}
-.modal-sub{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:18px;line-height:1.5}
-.form-group{margin-bottom:14px}
-.form-label{font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:6px}
-.form-input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.06);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:#fff;outline:none;transition:border-color .15s}
-.form-input:focus{border-color:var(--red);background:rgba(255,255,255,0.09)}
-.form-input.jp{font-family:'Noto Sans JP',sans-serif;font-size:16px}
-.word-entry{background:rgba(255,255,255,0.04);border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid var(--border)}
-.word-entry-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.word-entry-num{font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.word-del{background:none;border:none;cursor:pointer;color:var(--red);font-size:18px;padding:0 4px;line-height:1}
-.word-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.word-grid .form-group{margin-bottom:0}
-.add-word-btn{width:100%;padding:12px;border-radius:10px;border:1px dashed rgba(255,255,255,0.2);background:transparent;color:var(--muted);font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .15s;margin-bottom:16px}
-.add-word-btn:hover{border-color:var(--red);color:var(--red)}
-.modal-actions{display:flex;gap:10px}
-.btn-cancel{flex:1;padding:13px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;cursor:pointer}
-.btn-cancel:hover{background:rgba(255,255,255,0.05)}
-.btn-save{flex:2;padding:13px;border-radius:10px;border:none;background:var(--red);color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;cursor:pointer;transition:opacity .15s}
-.btn-save:hover{opacity:.88}
-.err-msg{font-size:12px;color:var(--red);font-weight:800;margin-top:6px;display:none}
-.err-msg.show{display:block}
-
 /* ── QUIZ ── */
 #quizScreen{background:var(--bg);padding:24px 16px 80px}
 .qcontainer{max-width:480px;margin:0 auto}
@@ -195,14 +186,14 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
   background:var(--card);border-radius:var(--rl);border:1px solid var(--border);
   padding:32px 24px 28px;text-align:center;
   box-shadow:0 4px 24px rgba(0,0,0,.4);margin-bottom:14px;
-  min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
 .fc-tag{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
-.fc-rom{font-size:14px;color:var(--muted);font-weight:700;margin-bottom:4px}
-.fc-jp{font-family:'Noto Sans JP',sans-serif;font-size:80px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:6px;word-break:break-all;overflow-wrap:break-word}
-.fc-jp.len-md{font-size:56px}
-.fc-jp.len-lg{font-size:40px}
-.fc-kana{font-family:'Noto Sans JP',sans-serif;font-size:20px;color:var(--muted)}
+.fc-rom{font-size:14px;color:#ffffff;font-weight:700;margin-bottom:4px}
+.fc-jp{font-family:'Noto Sans JP',sans-serif;font-size:clamp(48px, 18vw, 72px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:6px;word-break:break-all;overflow-wrap:break-word}
+.fc-jp.len-md{font-size:clamp(36px, 14vw, 58px)}
+.fc-jp.len-lg{font-size:clamp(28px, 10vw, 44px)}
+.fc-kana{font-family:'Noto Sans JP',sans-serif;font-size:44px;font-weight:700;color:#ffffff;margin-bottom:4px;line-height:1.2;word-break:break-all}
 .fc-q{font-size:15px;font-weight:800;color:#fff;margin-top:10px}
 .hint-pill-wrap{display:flex;justify-content:center;margin-bottom:10px}
 .hint-pill{background:var(--amber-l);color:var(--amber);font-size:11px;font-weight:800;padding:4px 14px;border-radius:99px;border:1px solid rgba(240,165,0,0.2)}
@@ -230,6 +221,17 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 .next-btn{display:none;width:100%;padding:16px;border-radius:var(--r);border:none;background:var(--red);color:#fff;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;cursor:pointer}
 .next-btn.show{display:block}
 .next-btn:active{opacity:.82}
+
+/* ── KANA TIMED QUIZ ── */
+.kq-timer-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kq-timer-track{flex:1;height:10px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden}
+.kq-timer-fill{height:100%;width:100%;background:var(--green);border-radius:99px;transition:width .25s linear,background-color .25s linear}
+.kq-timer-fill.warn{background:var(--amber)}
+.kq-timer-fill.danger{background:var(--red)}
+.kq-timer-num{font-size:13px;font-weight:900;color:var(--muted);min-width:26px;text-align:right;font-variant-numeric:tabular-nums}
+.kq-timer-num.danger{color:var(--red)}
+@keyframes kqPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.kq-timer-num.pulse{animation:kqPulse .5s ease infinite}
 
 /* ── SCORE ── */
 #scoreScreen{background:var(--bg);padding:24px 16px 48px}
@@ -269,18 +271,13 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 .nav-btn.primary:hover{opacity:.88}
 
 /* ── KANJI LIST & DETAIL ── */
-#flashcardListScreen,#quizListScreen,#quizCustomScreen{background:var(--bg);padding:0}
-#flashcardListScreen .home-body,#quizListScreen .home-body,#quizCustomScreen .home-body{padding:20px 16px 48px}
+#flashcardListScreen,#quizListScreen{background:var(--bg);padding:0}
+#flashcardListScreen .home-body,#quizListScreen .home-body{padding:20px 16px 48px}
 #kanjiDetailScreen{background:#0d0d0d;padding:0 0 48px;min-height:100vh}
-.kd-header{
-  background:linear-gradient(135deg,#C0392B 0%,#7B241C 100%);
-  padding:22px 16px 18px;display:flex;align-items:center;gap:10px;
-  box-shadow:0 4px 20px rgba(0,0,0,.5);position:relative;overflow:hidden;
-}
-.kd-header::after{content:'日';position:absolute;right:-10px;top:-14px;font-family:'Noto Sans JP',sans-serif;font-size:100px;font-weight:700;color:rgba(255,255,255,0.06);line-height:1;pointer-events:none}
-.kd-header .back-btn{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);color:#fff}
-.kd-header h2{font-size:17px;font-weight:900;color:#fff;flex:1;min-width:0;text-shadow:0 1px 4px rgba(0,0,0,.3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kd-header .q-counter{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:900;padding:5px 10px;border-radius:99px;border:1px solid rgba(255,255,255,0.2);flex-shrink:0;white-space:nowrap}
+.kd-header{background:var(--bg);padding:20px 16px 0;display:flex;align-items:center;gap:12px}
+.kd-header .back-btn{background:rgba(255,255,255,0.07);border-color:var(--border);color:#fff}
+.kd-header h2{font-size:18px;font-weight:900;color:#fff;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kd-header .q-counter{background:rgba(255,255,255,0.08);color:var(--muted);font-size:11px;font-weight:900;padding:5px 10px;border-radius:99px;border:1px solid var(--border);flex-shrink:0;white-space:nowrap}
 .kd-submenu{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 16px 16px}
 .kd-sub-btn{display:flex;flex-direction:column;align-items:center;gap:8px;border-radius:16px;padding:18px 8px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .18s;border:none;position:relative;overflow:hidden}
 .kd-sub-btn:hover{transform:translateY(-3px);filter:brightness(1.1)}
@@ -303,11 +300,62 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 .kd-item:nth-child(5n+3) .kd-item-kana{color:#B49AFF}
 .kd-item:nth-child(5n+4) .kd-item-kana{color:#FFAA5C}
 .kd-item:nth-child(5n+5) .kd-item-kana{color:#5EEAD4}
-.kd-item-jp{font-family:'Noto Sans JP',sans-serif;font-size:40px;font-weight:700;color:#fff;line-height:1;margin-bottom:8px;text-shadow:0 2px 12px rgba(255,255,255,0.1)}
+.kd-item-jp{font-family:'Noto Sans JP',sans-serif;font-size:56px;font-weight:700;color:#fff;line-height:1;margin-bottom:8px;text-shadow:0 2px 12px rgba(255,255,255,0.1)}
 .kd-item-kana{font-family:'Noto Sans JP',sans-serif;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1px}
 .kd-item-rom{font-size:10px;color:rgba(255,255,255,0.35);font-weight:700;margin-bottom:8px}
 .kd-item-divider{height:1px;background:rgba(255,255,255,0.08);margin:0 0 8px}
 .kd-item-meaning{font-size:13px;font-weight:900;color:rgba(255,255,255,0.9)}
+
+/* ── KANA SCREEN ── */
+#hiraganaScreen,#katakanaScreen{background:var(--bg);padding:0}
+#hiraganaScreen .home-body,#katakanaScreen .home-body{padding:20px 16px 48px}
+
+.kana-header-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+.kana-col-label{text-align:center;font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:4px 0}
+
+.kana-row-wrap{margin-bottom:8px}
+.kana-pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kana-pair-grid .kana-card{width:100%}
+
+.kana-card{
+  border-radius:12px;padding:10px 4px;text-align:center;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);
+  transition:all .15s;position:relative;
+}
+.kana-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.2)}
+.kana-card:active{transform:scale(0.96)}
+.kana-char{font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:3px}
+.kana-char.yoon{font-size:19px;letter-spacing:-0.5px}
+.kana-rom{font-size:9px;font-weight:900;color:var(--muted);letter-spacing:.04em}
+.kana-group-label{font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:14px 0 6px;display:flex;align-items:center;gap:8px}
+.kana-group-label::after{content:'';flex:1;height:1px;background:var(--border)}
+/* color variants per row */
+.kana-card.row-a{border-color:rgba(76,217,100,0.2);background:linear-gradient(145deg,#0A1F0D,#071509)}
+.kana-card.row-a .kana-char{color:var(--green)}
+.kana-card.row-k{border-color:rgba(74,158,226,0.2);background:linear-gradient(145deg,#0D1F37,#091529)}
+.kana-card.row-k .kana-char{color:var(--blue)}
+.kana-card.row-s{border-color:rgba(240,165,0,0.2);background:linear-gradient(145deg,#1E1400,#130D00)}
+.kana-card.row-s .kana-char{color:var(--amber)}
+.kana-card.row-t{border-color:rgba(226,75,74,0.2);background:linear-gradient(145deg,#1E0808,#130404)}
+.kana-card.row-t .kana-char{color:var(--red)}
+.kana-card.row-n{border-color:rgba(139,127,232,0.2);background:linear-gradient(145deg,#130D26,#0D0819)}
+.kana-card.row-n .kana-char{color:var(--purple)}
+.kana-card.row-h{border-color:rgba(76,217,100,0.15);background:linear-gradient(145deg,#0A1F14,#071510)}
+.kana-card.row-h .kana-char{color:#5EEAD4}
+.kana-card.row-m{border-color:rgba(74,158,226,0.15);background:linear-gradient(145deg,#0A1520,#070F18)}
+.kana-card.row-m .kana-char{color:#7EC8E3}
+.kana-card.row-y{border-color:rgba(240,165,0,0.15);background:linear-gradient(145deg,#1A1100,#110B00)}
+.kana-card.row-y .kana-char{color:#FFD080}
+.kana-card.row-r{border-color:rgba(226,75,74,0.15);background:linear-gradient(145deg,#1A0B0B,#110606)}
+.kana-card.row-r .kana-char{color:#FFAA8A}
+.kana-card.row-w{border-color:rgba(139,127,232,0.15);background:linear-gradient(145deg,#110A20,#0C0615)}
+.kana-card.row-w .kana-char{color:#C4B5FD}
+.kana-card.row-x{border-color:rgba(255,255,255,0.1);background:var(--card)}
+.kana-card.row-x .kana-char{color:rgba(255,255,255,0.6)}
+.kana-card.empty{visibility:hidden;pointer-events:none}
+.kana-divider{display:flex;align-items:center;gap:10px;margin:18px 0 10px;font-size:12px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.kana-divider::before,.kana-divider::after{content:'';flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,0.18)}
+.kana-divider::before{flex:0 0 0}
 
 /* ── RESPONSIVE ── */
 
@@ -325,22 +373,20 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 
   .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .menu-card { flex-direction: row; align-items: center; padding: 18px; }
-  .menu-card:last-child { grid-column: 1 / -1; }
+
+  #hiraganaScreen .home-body,
+  #katakanaScreen .home-body { padding: 24px 24px 60px; }
 
   .kd-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .kd-submenu { padding: 20px 24px; }
   .kd-list-wrap { padding: 0 24px; }
 
   #flashcardListScreen .home-body,
-  #quizListScreen .home-body,
-  #quizCustomScreen .home-body { padding: 24px 24px 60px; }
+  #quizListScreen .home-body { padding: 24px 24px 60px; }
 
   .word-grid { grid-template-columns: 1fr 1fr; }
-  .fc-jp { font-size: 90px; }
+  .fc-jp { font-size: clamp(64px, 14vw, 90px); }
   .flip-inner { height: 440px; }
-
-  .modal { border-radius: 18px; margin: auto; }
-  .modal-overlay { align-items: center; }
 }
 
 /* Desktop: ≥ 1024px — aman tidak akan aktif di HP */
@@ -425,18 +471,24 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 
   #flashcardListScreen,
   #quizListScreen,
-  #quizCustomScreen,
   #kanjiDetailScreen,
   #flashcardScreen,
   #quizScreen,
-  #scoreScreen {
+  #scoreScreen,
+  #hiraganaScreen,
+  #katakanaScreen {
     grid-column: 1 / -1;
     grid-row: 1;
   }
 
   #flashcardListScreen .home-body,
-  #quizListScreen .home-body,
-  #quizCustomScreen .home-body { padding: 32px 48px 80px; max-width: 760px; margin: 0 auto; }
+  #quizListScreen .home-body { padding: 32px 48px 80px; max-width: 760px; margin: 0 auto; }
+
+  #hiraganaScreen .home-body,
+  #katakanaScreen .home-body { padding: 32px 48px 80px; max-width: 900px; margin: 0 auto; }
+
+  #hiraganaScreen .kana-grid,
+  #katakanaScreen .kana-grid { grid-template-columns: repeat(5, 80px); gap: 10px; }
 
   #quizScreen { padding: 32px 48px 80px; }
   #scoreScreen { padding: 32px 48px 80px; }
@@ -453,10 +505,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
   .word-grid { grid-template-columns: 1fr 1fr; }
 
   .flip-inner { height: 480px; }
-  .fc-jp { font-size: 100px; }
-
-  .modal { border-radius: 18px; margin: auto; }
-  .modal-overlay { align-items: center; }
+  .fc-jp { font-size: clamp(44px, 5vw, 72px); }
 }
 </style>
 </head>
@@ -493,7 +542,21 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 
   <div class="home-body">
     <div class="section-head"><h2>Mulai Belajar</h2></div>
-    <div class="menu-grid">
+    <div class="menu-grid-kana">
+      <div class="menu-card mc-green menu-card-sm" onclick="goHiragana()">
+        <div class="menu-icon gr-green">あ</div>
+        <div class="menu-info">
+          <div class="menu-title">Hiragana</div>
+        </div>
+      </div>
+      <div class="menu-card mc-amber menu-card-sm" onclick="goKatakana()">
+        <div class="menu-icon gr-amber">ア</div>
+        <div class="menu-info">
+          <div class="menu-title">Katakana</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-grid" style="margin-top:12px">
       <div class="menu-card mc-blue" onclick="goFlashcardList()">
         <div class="menu-icon gr-blue">🗂️</div>
         <div class="menu-info">
@@ -510,15 +573,31 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
         </div>
         <div class="menu-arrow">›</div>
       </div>
-      <div class="menu-card mc-purple" onclick="goQuizCustom()">
-        <div class="menu-icon gr-purple">✏️</div>
-        <div class="menu-info">
-          <div class="menu-title">Quiz Custom</div>
-          <div class="menu-desc">Buat & mainkan quiz buatanmu sendiri</div>
-        </div>
-        <div class="menu-arrow">›</div>
-      </div>
     </div>
+  </div>
+</div>
+
+<!-- ══ HIRAGANA SCREEN ══ -->
+<div id="hiraganaScreen" class="screen">
+  <div class="home-body">
+    <div class="topbar">
+      <button class="back-btn" onclick="goHome()">←</button>
+      <h2>Hiragana</h2>
+    </div>
+    <button class="kq-start-btn" onclick="startKanaQuiz('hiragana')">⏱ Mulai Quiz</button>
+    <div id="hiraganaGrid"></div>
+  </div>
+</div>
+
+<!-- ══ KATAKANA SCREEN ══ -->
+<div id="katakanaScreen" class="screen">
+  <div class="home-body">
+    <div class="topbar">
+      <button class="back-btn" onclick="goHome()">←</button>
+      <h2>Katakana</h2>
+    </div>
+    <button class="kq-start-btn" onclick="startKanaQuiz('katakana')">⏱ Mulai Quiz</button>
+    <div id="katakanaGrid"></div>
   </div>
 </div>
 
@@ -535,24 +614,26 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 
 <!-- ══ KANJI DETAIL SCREEN ══ -->
 <div id="kanjiDetailScreen" class="screen">
-  <div class="kd-header">
-    <button class="back-btn" onclick="goFlashcardList()">←</button>
-    <h2 id="kdTitle">N5 — Kanji Dasar 1</h2>
-    <div class="q-counter" id="kdCount">15 kanji</div>
-  </div>
-  <div class="kd-submenu">
-    <button class="kd-sub-btn sb-flash" onclick="startFlashcardFromDetail()">
-      <div class="kd-sub-icon">🗂️</div>
-      <div class="kd-sub-label">Flashcard</div>
-    </button>
-    <button class="kd-sub-btn sb-quiz" onclick="startQuizFromDetail()">
-      <div class="kd-sub-icon">📝</div>
-      <div class="kd-sub-label">Quiz</div>
-    </button>
-  </div>
-  <div class="kd-list-wrap">
-    <div class="kd-list-title">Daftar Kanji</div>
-    <div class="kd-grid" id="kdGrid"></div>
+  <div class="home-body" style="padding:20px 16px 48px">
+    <div class="topbar">
+      <button class="back-btn" onclick="goFlashcardList()">←</button>
+      <h2 id="kdTitle">N5 — Kanji Dasar 1</h2>
+      <div class="q-counter" id="kdCount">15 kanji</div>
+    </div>
+    <div class="kd-submenu" id="kdSubmenu">
+      <button class="kd-sub-btn sb-flash" onclick="startFlashcardFromDetail()">
+        <div class="kd-sub-icon">🗂️</div>
+        <div class="kd-sub-label">Flashcard</div>
+      </button>
+      <button class="kd-sub-btn sb-quiz" onclick="startQuizFromDetail()">
+        <div class="kd-sub-icon">📝</div>
+        <div class="kd-sub-label">Quiz</div>
+      </button>
+    </div>
+    <div class="kd-list-wrap">
+      <div class="kd-list-title">Daftar Kanji</div>
+      <div class="kd-grid" id="kdGrid"></div>
+    </div>
   </div>
 </div>
 
@@ -597,18 +678,6 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
   </div>
 </div>
 
-<!-- ══ QUIZ CUSTOM LIST ══ -->
-<div id="quizCustomScreen" class="screen">
-  <div class="home-body">
-    <div class="topbar">
-      <button class="back-btn" onclick="goHome()">←</button>
-      <h2>Quiz Custom</h2>
-      <button class="add-btn" onclick="openAddModal()">＋ Tambah Quiz</button>
-    </div>
-    <div class="session-list" id="customQuizList"></div>
-  </div>
-</div>
-
 <!-- ══ QUIZ PLAY ══ -->
 <div id="quizScreen" class="screen">
   <div class="qcontainer">
@@ -620,8 +689,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
     <div class="flashcard">
       <div class="fc-tag" id="fcTag"></div>
       <div class="fc-rom" id="fcRom"></div>
-      <div class="fc-jp" id="fcJp"></div>
       <div class="fc-kana" id="fcKana"></div>
+      <div class="fc-jp" id="fcJp"></div>
       <div class="fc-q">Artinya apa?</div>
     </div>
     <div class="hint-pill-wrap"><div class="hint-pill" id="hintPill"></div></div>
@@ -652,347 +721,488 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
   </div>
 </div>
 
-<!-- ══ MODAL ══ -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalBg(event)">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="modalTitle">Tambah Quiz Baru</div>
-    <div class="modal-sub">Isi judul quiz dan minimal 4 kosakata (kanji/kata + arti). Pilihan jawaban salah akan diambil otomatis secara acak dari kata-kata lain di quiz ini.</div>
-    <div class="form-group">
-      <label class="form-label">Judul Quiz</label>
-      <input class="form-input" id="fTitle" placeholder="Contoh: Quiz 2 — Kata Sehari-hari">
-      <div class="err-msg" id="errTitle">Judul tidak boleh kosong.</div>
+<!-- ══ KANA TIMED QUIZ ══ -->
+<div id="kanaQuizScreen" class="screen">
+  <div class="qcontainer">
+    <div class="topbar">
+      <button class="back-btn" onclick="goBackKanaQuiz()">←</button>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-bar" id="kqProgBar"></div></div></div>
+      <div class="q-counter" id="kqCounter">1 / 10</div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Keterangan (opsional)</label>
-      <input class="form-input" id="fDesc" placeholder="Contoh: Bab 2 Minna no Nihongo">
+    <div class="kq-timer-wrap">
+      <div class="kq-timer-track"><div class="kq-timer-fill" id="kqTimerFill"></div></div>
+      <div class="kq-timer-num" id="kqTimerNum">10</div>
     </div>
-    <div id="wordEntries"></div>
-    <button class="add-word-btn" onclick="addWordEntry()">＋ Tambah Kata</button>
-    <div class="err-msg" id="errWords" style="margin-bottom:12px"></div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModalDirect()">Batal</button>
-      <button class="btn-save" onclick="saveSession()">Simpan Quiz</button>
+    <div class="flashcard">
+      <div class="fc-tag" id="kqTag">Hiragana</div>
+      <div class="fc-jp" id="kqJp"></div>
+      <div class="fc-q">Bacaannya apa?</div>
+    </div>
+    <div class="options" id="kqOptContainer"></div>
+    <div class="feedback" id="kqFeedback">
+      <div class="fb-icon" id="kqFbIcon"></div>
+      <div><div class="fb-title" id="kqFbTitle"></div><div class="fb-sub" id="kqFbSub"></div></div>
+    </div>
+    <button class="next-btn" id="kqNextBtn" onclick="kqNextQ()">Lanjut →</button>
+  </div>
+</div>
+
+<!-- ══ KANA SCORE ══ -->
+<div id="kanaScoreScreen" class="screen">
+  <div class="score-wrap">
+    <div class="score-card">
+      <div class="score-emoji" id="kqScoreEmoji">🎉</div>
+      <div class="score-title" id="kqScoreTitle"></div>
+      <div class="score-sub" id="kqScoreSub"></div>
+      <div class="score-grid">
+        <div class="score-box"><div class="score-n g" id="kqScCorrect">0</div><div class="score-lb">Benar</div></div>
+        <div class="score-box"><div class="score-n r" id="kqScWrong">0</div><div class="score-lb">Salah</div></div>
+        <div class="score-box"><div class="score-n" id="kqScTimeout" style="color:var(--amber)">0</div><div class="score-lb">Waktu Habis</div></div>
+      </div>
+      <button class="home-btn" onclick="goBackKanaQuiz(true)">← Kembali</button>
+      <button class="retry-btn" onclick="retryKanaQuiz()">Ulangi Quiz 🔄</button>
     </div>
   </div>
 </div>
 
+
+
 <script>
+/* ══════════════════════════════════
+   KANA DATA
+══════════════════════════════════ */
+const HIRAGANA_ROWS = [
+  {label:'あ行',row:'a', chars:[{c:'あ',r:'a'},{c:'い',r:'i'},{c:'う',r:'u'},{c:'え',r:'e'},{c:'お',r:'o'}]},
+  {label:'か行',row:'k', chars:[{c:'か',r:'ka'},{c:'き',r:'ki'},{c:'く',r:'ku'},{c:'け',r:'ke'},{c:'こ',r:'ko'}]},
+  {label:'さ行',row:'s', chars:[{c:'さ',r:'sa'},{c:'し',r:'shi'},{c:'す',r:'su'},{c:'せ',r:'se'},{c:'そ',r:'so'}]},
+  {label:'た行',row:'t', chars:[{c:'た',r:'ta'},{c:'ち',r:'chi'},{c:'つ',r:'tsu'},{c:'て',r:'te'},{c:'と',r:'to'}]},
+  {label:'な行',row:'n', chars:[{c:'な',r:'na'},{c:'に',r:'ni'},{c:'ぬ',r:'nu'},{c:'ね',r:'ne'},{c:'の',r:'no'}]},
+  {label:'は行',row:'h', chars:[{c:'は',r:'ha'},{c:'ひ',r:'hi'},{c:'ふ',r:'fu'},{c:'へ',r:'he'},{c:'ほ',r:'ho'}]},
+  {label:'ま行',row:'m', chars:[{c:'ま',r:'ma'},{c:'み',r:'mi'},{c:'む',r:'mu'},{c:'め',r:'me'},{c:'も',r:'mo'}]},
+  {label:'や行',row:'y', chars:[{c:'や',r:'ya'},{c:null,r:''},{c:'ゆ',r:'yu'},{c:null,r:''},{c:'よ',r:'yo'}]},
+  {label:'ら行',row:'r', chars:[{c:'ら',r:'ra'},{c:'り',r:'ri'},{c:'る',r:'ru'},{c:'れ',r:'re'},{c:'ろ',r:'ro'}]},
+  {label:'わ行・ん',row:'w', chars:[{c:'わ',r:'wa'},{c:null,r:''},{c:null,r:''},{c:null,r:''},{c:'を',r:'wo'}]},
+  {label:'',row:'x', chars:[{c:'ん',r:'n'},{c:null,r:''},{c:null,r:''},{c:null,r:''},{c:null,r:''}]},
+  {divider:''},
+  {label:'が行',row:'k', chars:[{c:'が',r:'ga'},{c:'ぎ',r:'gi'},{c:'ぐ',r:'gu'},{c:'げ',r:'ge'},{c:'ご',r:'go'}]},
+  {label:'ざ行',row:'s', chars:[{c:'ざ',r:'za'},{c:'じ',r:'ji'},{c:'ず',r:'zu'},{c:'ぜ',r:'ze'},{c:'ぞ',r:'zo'}]},
+  {label:'だ行',row:'t', chars:[{c:'だ',r:'da'},{c:'ぢ',r:'di'},{c:'づ',r:'du'},{c:'で',r:'de'},{c:'ど',r:'do'}]},
+  {label:'ば行',row:'h', chars:[{c:'ば',r:'ba'},{c:'び',r:'bi'},{c:'ぶ',r:'bu'},{c:'べ',r:'be'},{c:'ぼ',r:'bo'}]},
+  {divider:''},
+  {label:'ぱ行',row:'h', chars:[{c:'ぱ',r:'pa'},{c:'ぴ',r:'pi'},{c:'ぷ',r:'pu'},{c:'ぺ',r:'pe'},{c:'ぽ',r:'po'}]},
+  {divider:'Yōon (ゃゅょ)'},
+  {label:'きゃ行',row:'k', cols:3, chars:[{c:'きゃ',r:'kya'},{c:'きゅ',r:'kyu'},{c:'きょ',r:'kyo'}]},
+  {label:'しゃ行',row:'s', cols:3, chars:[{c:'しゃ',r:'sha'},{c:'しゅ',r:'shu'},{c:'しょ',r:'sho'}]},
+  {label:'ちゃ行',row:'t', cols:3, chars:[{c:'ちゃ',r:'cha'},{c:'ちゅ',r:'chu'},{c:'ちょ',r:'cho'}]},
+  {label:'にゃ行',row:'n', cols:3, chars:[{c:'にゃ',r:'nya'},{c:'にゅ',r:'nyu'},{c:'にょ',r:'nyo'}]},
+  {label:'ひゃ行',row:'h', cols:3, chars:[{c:'ひゃ',r:'hya'},{c:'ひゅ',r:'hyu'},{c:'ひょ',r:'hyo'}]},
+  {label:'みゃ行',row:'m', cols:3, chars:[{c:'みゃ',r:'mya'},{c:'みゅ',r:'myu'},{c:'みょ',r:'myo'}]},
+  {label:'りゃ行',row:'r', cols:3, chars:[{c:'りゃ',r:'rya'},{c:'りゅ',r:'ryu'},{c:'りょ',r:'ryo'}]},
+  {label:'ぎゃ行',row:'k', cols:3, chars:[{c:'ぎゃ',r:'gya'},{c:'ぎゅ',r:'gyu'},{c:'ぎょ',r:'gyo'}]},
+  {label:'じゃ行',row:'s', cols:3, chars:[{c:'じゃ',r:'ja'},{c:'じゅ',r:'ju'},{c:'じょ',r:'jo'}]},
+  {label:'びゃ行',row:'h', cols:3, chars:[{c:'びゃ',r:'bya'},{c:'びゅ',r:'byu'},{c:'びょ',r:'byo'}]},
+  {label:'ぴゃ行',row:'h', cols:3, chars:[{c:'ぴゃ',r:'pya'},{c:'ぴゅ',r:'pyu'},{c:'ぴょ',r:'pyo'}]},
+];
+
+const KATAKANA_ROWS = [
+  {label:'ア行',row:'a', chars:[{c:'ア',r:'a'},{c:'イ',r:'i'},{c:'ウ',r:'u'},{c:'エ',r:'e'},{c:'オ',r:'o'}]},
+  {label:'カ行',row:'k', chars:[{c:'カ',r:'ka'},{c:'キ',r:'ki'},{c:'ク',r:'ku'},{c:'ケ',r:'ke'},{c:'コ',r:'ko'}]},
+  {label:'サ行',row:'s', chars:[{c:'サ',r:'sa'},{c:'シ',r:'shi'},{c:'ス',r:'su'},{c:'セ',r:'se'},{c:'ソ',r:'so'}]},
+  {label:'タ行',row:'t', chars:[{c:'タ',r:'ta'},{c:'チ',r:'chi'},{c:'ツ',r:'tsu'},{c:'テ',r:'te'},{c:'ト',r:'to'}]},
+  {label:'ナ行',row:'n', chars:[{c:'ナ',r:'na'},{c:'ニ',r:'ni'},{c:'ヌ',r:'nu'},{c:'ネ',r:'ne'},{c:'ノ',r:'no'}]},
+  {label:'ハ行',row:'h', chars:[{c:'ハ',r:'ha'},{c:'ヒ',r:'hi'},{c:'フ',r:'fu'},{c:'ヘ',r:'he'},{c:'ホ',r:'ho'}]},
+  {label:'マ行',row:'m', chars:[{c:'マ',r:'ma'},{c:'ミ',r:'mi'},{c:'ム',r:'mu'},{c:'メ',r:'me'},{c:'モ',r:'mo'}]},
+  {label:'ヤ行',row:'y', chars:[{c:'ヤ',r:'ya'},{c:null,r:''},{c:'ユ',r:'yu'},{c:null,r:''},{c:'ヨ',r:'yo'}]},
+  {label:'ラ行',row:'r', chars:[{c:'ラ',r:'ra'},{c:'リ',r:'ri'},{c:'ル',r:'ru'},{c:'レ',r:'re'},{c:'ロ',r:'ro'}]},
+  {label:'ワ行・ン',row:'w', chars:[{c:'ワ',r:'wa'},{c:null,r:''},{c:null,r:''},{c:null,r:''},{c:'ヲ',r:'wo'}]},
+  {label:'',row:'x', chars:[{c:'ン',r:'n'},{c:null,r:''},{c:null,r:''},{c:null,r:''},{c:null,r:''}]},
+  {divider:''},
+  {label:'ガ行',row:'k', chars:[{c:'ガ',r:'ga'},{c:'ギ',r:'gi'},{c:'グ',r:'gu'},{c:'ゲ',r:'ge'},{c:'ゴ',r:'go'}]},
+  {label:'ザ行',row:'s', chars:[{c:'ザ',r:'za'},{c:'ジ',r:'ji'},{c:'ズ',r:'zu'},{c:'ゼ',r:'ze'},{c:'ゾ',r:'zo'}]},
+  {label:'ダ行',row:'t', chars:[{c:'ダ',r:'da'},{c:'ヂ',r:'di'},{c:'ヅ',r:'du'},{c:'デ',r:'de'},{c:'ド',r:'do'}]},
+  {label:'バ行',row:'h', chars:[{c:'バ',r:'ba'},{c:'ビ',r:'bi'},{c:'ブ',r:'bu'},{c:'ベ',r:'be'},{c:'ボ',r:'bo'}]},
+  {divider:''},
+  {label:'パ行',row:'h', chars:[{c:'パ',r:'pa'},{c:'ピ',r:'pi'},{c:'プ',r:'pu'},{c:'ペ',r:'pe'},{c:'ポ',r:'po'}]},
+  {divider:'Yōon (ャュョ)'},
+  {label:'キャ行',row:'k', cols:3, chars:[{c:'キャ',r:'kya'},{c:'キュ',r:'kyu'},{c:'キョ',r:'kyo'}]},
+  {label:'シャ行',row:'s', cols:3, chars:[{c:'シャ',r:'sha'},{c:'シュ',r:'shu'},{c:'ショ',r:'sho'}]},
+  {label:'チャ行',row:'t', cols:3, chars:[{c:'チャ',r:'cha'},{c:'チュ',r:'chu'},{c:'チョ',r:'cho'}]},
+  {label:'ニャ行',row:'n', cols:3, chars:[{c:'ニャ',r:'nya'},{c:'ニュ',r:'nyu'},{c:'ニョ',r:'nyo'}]},
+  {label:'ヒャ行',row:'h', cols:3, chars:[{c:'ヒャ',r:'hya'},{c:'ヒュ',r:'hyu'},{c:'ヒョ',r:'hyo'}]},
+  {label:'ミャ行',row:'m', cols:3, chars:[{c:'ミャ',r:'mya'},{c:'ミュ',r:'myu'},{c:'ミョ',r:'myo'}]},
+  {label:'リャ行',row:'r', cols:3, chars:[{c:'リャ',r:'rya'},{c:'リュ',r:'ryu'},{c:'リョ',r:'ryo'}]},
+  {label:'ギャ行',row:'k', cols:3, chars:[{c:'ギャ',r:'gya'},{c:'ギュ',r:'gyu'},{c:'ギョ',r:'gyo'}]},
+  {label:'ジャ行',row:'s', cols:3, chars:[{c:'ジャ',r:'ja'},{c:'ジュ',r:'ju'},{c:'ジョ',r:'jo'}]},
+  {label:'ビャ行',row:'h', cols:3, chars:[{c:'ビャ',r:'bya'},{c:'ビュ',r:'byu'},{c:'ビョ',r:'byo'}]},
+  {label:'ピャ行',row:'h', cols:3, chars:[{c:'ピャ',r:'pya'},{c:'ピュ',r:'pyu'},{c:'ピョ',r:'pyo'}]},
+];
+
+function renderKanaScreen(rows, containerId){
+  const container = document.getElementById(containerId);
+  let html = '';
+  rows.forEach(rowData => {
+    if('divider' in rowData){
+      html += `<div class="kana-divider">${rowData.divider}</div>`;
+      return;
+    }
+    const cols = rowData.cols || 5;
+    html += `<div class="kana-row-wrap"><div class="kana-pair-grid" style="grid-template-columns:repeat(${cols},1fr)">`;
+    rowData.chars.forEach(ch => {
+      if(!ch.c){
+        html += `<div class="kana-card empty"></div>`;
+      } else {
+        const charClass = ch.c.length > 1 ? 'kana-char yoon' : 'kana-char';
+        html += `<div class="kana-card row-${rowData.row}"><div class="${charClass}">${ch.c}</div><div class="kana-rom">${ch.r}</div></div>`;
+      }
+    });
+    html += `</div></div>`;
+  });
+  container.innerHTML = html;
+}
+
+function goHiragana(){
+  showScreen('hiraganaScreen');
+  renderKanaScreen(HIRAGANA_ROWS, 'hiraganaGrid');
+}
+function goKatakana(){
+  showScreen('katakanaScreen');
+  renderKanaScreen(KATAKANA_ROWS, 'katakanaGrid');
+}
+
+/* ══════════════════════════════════
+   KANA TIMED QUIZ (10s / soal)
+══════════════════════════════════ */
+const KQ_TIME = 10; // detik per soal
+let kqType='hiragana';      // 'hiragana' | 'katakana'
+let kqPool=[];               // {c, r} flat list dari rows aktif
+let kqOrder=[], kqIdx=0, kqCorrect=0, kqWrong=0, kqTimeout=0, kqAnswered=false;
+let kqTimer=null, kqTimeLeft=KQ_TIME;
+
+function flattenKana(rows){
+  const out=[];
+  rows.forEach(rowData=>{
+    if('divider' in rowData) return;
+    rowData.chars.forEach(ch=>{ if(ch.c) out.push({c:ch.c, r:ch.r}); });
+  });
+  return out;
+}
+
+function startKanaQuiz(type){
+  kqType=type;
+  kqPool=flattenKana(type==='hiragana'?HIRAGANA_ROWS:KATAKANA_ROWS);
+  kqOrder=shuffle(kqPool.map((_,i)=>i));
+  kqIdx=0; kqCorrect=0; kqWrong=0; kqTimeout=0; kqAnswered=false;
+  showScreen('kanaQuizScreen');
+  kqRenderQ();
+}
+
+function kqStopTimer(){
+  if(kqTimer){ clearInterval(kqTimer); kqTimer=null; }
+}
+
+function kqRenderQ(){
+  kqAnswered=false;
+  kqStopTimer();
+  const total=kqOrder.length;
+  const item=kqPool[kqOrder[kqIdx]];
+
+  document.getElementById('kqProgBar').style.width=((kqIdx/total)*100)+'%';
+  document.getElementById('kqCounter').textContent=(kqIdx+1)+' / '+total;
+  document.getElementById('kqTag').textContent = kqType==='hiragana' ? 'Hiragana' : 'Katakana';
+  document.getElementById('kqJp').textContent = item.c;
+
+  const letters=['A','B','C','D'];
+  const wrongPool=[...new Set(kqPool.filter(x=>x.r!==item.r).map(x=>x.r))];
+  const wrongChoices=shuffle(wrongPool).slice(0,3);
+  const opts=shuffle([item.r,...wrongChoices]);
+
+  const container=document.getElementById('kqOptContainer');
+  container.innerHTML='';
+  opts.forEach(function(o,i){
+    const btn=document.createElement('button');
+    btn.className='opt';
+    btn.dataset.chosen=o;
+    btn.dataset.correct=item.r;
+    btn.innerHTML='<div class="opt-l">'+letters[i]+'</div><div>'+o+'</div>';
+    btn.addEventListener('click',function(){ kqAnswerQ(this); });
+    container.appendChild(btn);
+  });
+
+  document.getElementById('kqFeedback').className='feedback';
+  document.getElementById('kqNextBtn').className='next-btn';
+
+  kqTimeLeft=KQ_TIME;
+  kqUpdateTimerUI();
+  kqTimer=setInterval(function(){
+    kqTimeLeft -= 0.1;
+    if(kqTimeLeft<=0){
+      kqTimeLeft=0;
+      kqUpdateTimerUI();
+      kqStopTimer();
+      kqHandleTimeout();
+      return;
+    }
+    kqUpdateTimerUI();
+  }, 100);
+}
+
+function kqUpdateTimerUI(){
+  const fill=document.getElementById('kqTimerFill');
+  const num=document.getElementById('kqTimerNum');
+  const pct=Math.max(0,(kqTimeLeft/KQ_TIME)*100);
+  fill.style.width=pct+'%';
+  num.textContent=Math.ceil(kqTimeLeft);
+  fill.classList.remove('warn','danger');
+  num.classList.remove('danger','pulse');
+  if(kqTimeLeft<=3){
+    fill.classList.add('danger');
+    num.classList.add('danger','pulse');
+  } else if(kqTimeLeft<=5){
+    fill.classList.add('warn');
+  }
+}
+
+function kqHandleTimeout(){
+  if(kqAnswered) return;
+  kqAnswered=true;
+  kqWrong++; kqTimeout++;
+  const item=kqPool[kqOrder[kqIdx]];
+  document.querySelectorAll('#kqOptContainer .opt').forEach(function(b){
+    if(b.dataset.chosen===item.r){ b.classList.add('correct'); }
+    else{ b.classList.add('dimmed'); }
+  });
+  const fb=document.getElementById('kqFeedback');
+  fb.className='feedback bad';
+  document.getElementById('kqFbIcon').textContent='⏰';
+  const fbTitle=document.getElementById('kqFbTitle');
+  fbTitle.className='fb-title fb-bad'; fbTitle.textContent='Waktu habis!';
+  document.getElementById('kqFbSub').textContent='Jawaban benar: '+item.r;
+  document.getElementById('kqNextBtn').className='next-btn show';
+}
+
+function kqAnswerQ(btn){
+  if(kqAnswered) return;
+  kqAnswered=true;
+  kqStopTimer();
+  const chosen=btn.dataset.chosen;
+  const correct=btn.dataset.correct;
+  const isOk=chosen===correct;
+  document.querySelectorAll('#kqOptContainer .opt').forEach(function(b){
+    if(b===btn){ b.classList.add(isOk?'correct':'wrong'); }
+    else if(b.dataset.chosen===correct){ b.classList.add('correct'); }
+    else{ b.classList.add('dimmed'); }
+  });
+  const fb=document.getElementById('kqFeedback');
+  const fbTitle=document.getElementById('kqFbTitle');
+  if(isOk){
+    kqCorrect++;
+    fb.className='feedback';
+    setTimeout(kqNextQ, 400);
+  } else {
+    kqWrong++;
+    fb.className='feedback bad';
+    document.getElementById('kqFbIcon').textContent='❌';
+    fbTitle.className='fb-title fb-bad'; fbTitle.textContent='Salah!';
+    document.getElementById('kqFbSub').textContent='Jawaban benar: '+correct;
+    document.getElementById('kqNextBtn').className='next-btn show';
+  }
+}
+
+function kqNextQ(){
+  kqStopTimer();
+  kqIdx++;
+  if(kqIdx>=kqOrder.length) kqShowScore();
+  else kqRenderQ();
+}
+
+function kqShowScore(){
+  kqStopTimer();
+  const total=kqOrder.length;
+  const pct=Math.round(kqCorrect/total*100);
+  let emoji='😢',title='Masih harus belajar lagi!';
+  if(pct>=90){emoji='🏆';title='Sempurna! Luar biasa!';}
+  else if(pct>=70){emoji='🎉';title='Bagus sekali!';}
+  else if(pct>=50){emoji='👍';title='Lumayan, terus semangat!';}
+  document.getElementById('kqScoreEmoji').textContent=emoji;
+  document.getElementById('kqScoreTitle').textContent=title;
+  document.getElementById('kqScoreSub').textContent='Kamu benar '+pct+'% dari '+total+' soal';
+  document.getElementById('kqScCorrect').textContent=kqCorrect;
+  document.getElementById('kqScWrong').textContent=kqWrong;
+  document.getElementById('kqScTimeout').textContent=kqTimeout;
+  showScreen('kanaScoreScreen');
+}
+
+function retryKanaQuiz(){ startKanaQuiz(kqType); }
+
+function goBackKanaQuiz(fromScore){
+  kqStopTimer();
+  if(kqType==='hiragana') goHiragana(); else goKatakana();
+}
+
 /* ══════════════════════════════════
    DATA
 ══════════════════════════════════ */
-const DEFAULT_VERB_G1_P1 = {
-  id:'verb_g1_p1', title:'Kata Kerja Group 1 — Part 1', desc:'動詞グループ1 · Part 1 (15 kata)',
+const VERB_G1_P1 = {
+  id:'verb_g1_p1', title:'Kata Kerja Group 1 — Part 1', desc:'No. 1–35',
   icon:'🔥', iconBg:'ic-red',
   words:[
-    {jp:'書きます',kana:'かきます',rom:'kakimasu',meaning:'menulis',tag:'Kata Kerja G1'},
-    {jp:'聞きます',kana:'ききます',rom:'kikimasu',meaning:'mendengar / bertanya',tag:'Kata Kerja G1'},
-    {jp:'泳ぎます',kana:'およぎます',rom:'oyogimasu',meaning:'berenang',tag:'Kata Kerja G1'},
-    {jp:'急ぎます',kana:'いそぎます',rom:'isogimasu',meaning:'terburu-buru',tag:'Kata Kerja G1'},
-    {jp:'脱ぎます',kana:'ぬぎます',rom:'nugimasu',meaning:'melepas (pakaian)',tag:'Kata Kerja G1'},
-    {jp:'話します',kana:'はなします',rom:'hanashimasu',meaning:'berbicara',tag:'Kata Kerja G1'},
-    {jp:'貸します',kana:'かします',rom:'kashimasu',meaning:'meminjamkan',tag:'Kata Kerja G1'},
-    {jp:'返します',kana:'かえします',rom:'kaeshimasu',meaning:'mengembalikan',tag:'Kata Kerja G1'},
-    {jp:'消します',kana:'けします',rom:'keshimasu',meaning:'mematikan / menghapus',tag:'Kata Kerja G1'},
-    {jp:'押します',kana:'おします',rom:'oshimasu',meaning:'mendorong / menekan',tag:'Kata Kerja G1'},
-    {jp:'出します',kana:'だします',rom:'dashimasu',meaning:'mengeluarkan / mengumpulkan',tag:'Kata Kerja G1'},
-    {jp:'待ちます',kana:'まちます',rom:'machimasu',meaning:'menunggu',tag:'Kata Kerja G1'},
-    {jp:'持ちます',kana:'もちます',rom:'mochimasu',meaning:'membawa / memegang',tag:'Kata Kerja G1'},
-    {jp:'立ちます',kana:'たちます',rom:'tachimasu',meaning:'berdiri',tag:'Kata Kerja G1'},
-    {jp:'打ちます',kana:'うちます',rom:'uchimasu',meaning:'memukul / mengetik',tag:'Kata Kerja G1'},
+    {jp:'働きます',kana:'はたらきます',rom:'hatarakimasu',meaning:'Bekerja',tag:'Kata Kerja G1'},
+    {jp:'休みます',kana:'やすみます',rom:'yasumimasu',meaning:'Libur / Istirahat',tag:'Kata Kerja G1'},
+    {jp:'終わります',kana:'おわります',rom:'owarimasu',meaning:'Selesai',tag:'Kata Kerja G1'},
+    {jp:'行きます',kana:'いきます',rom:'ikimasu',meaning:'Pergi',tag:'Kata Kerja G1'},
+    {jp:'帰ります',kana:'かえります',rom:'kaerimasu',meaning:'Pulang',tag:'Kata Kerja G1'},
+    {jp:'飲みます',kana:'のみます',rom:'nomimasu',meaning:'Minum',tag:'Kata Kerja G1'},
+    {jp:'吸います',kana:'すいます',rom:'suimasu',meaning:'Menghisap (rokok)',tag:'Kata Kerja G1'},
+    {jp:'書きます',kana:'かきます',rom:'kakimasu',meaning:'Menulis',tag:'Kata Kerja G1'},
+    {jp:'読みます',kana:'よみます',rom:'yomimasu',meaning:'Membaca',tag:'Kata Kerja G1'},
+    {jp:'聞きます',kana:'ききます',rom:'kikimasu',meaning:'Mendengar / Bertanya',tag:'Kata Kerja G1'},
+    {jp:'買います',kana:'かいます',rom:'kaimasu',meaning:'Membeli',tag:'Kata Kerja G1'},
+    {jp:'撮ります',kana:'とります',rom:'torimasu',meaning:'Mengambil (foto)',tag:'Kata Kerja G1'},
+    {jp:'会います',kana:'あいます',rom:'aimasu',meaning:'Bertemu',tag:'Kata Kerja G1'},
+    {jp:'切ります',kana:'きります',rom:'kirimasu',meaning:'Memotong',tag:'Kata Kerja G1'},
+    {jp:'もらいます',kana:'もらいます',rom:'moraimasu',meaning:'Menerima',tag:'Kata Kerja G1'},
+    {jp:'習います',kana:'ならいます',rom:'naraimasu',meaning:'Belajar',tag:'Kata Kerja G1'},
+    {jp:'貸します',kana:'かします',rom:'kashimasu',meaning:'Meminjamkan',tag:'Kata Kerja G1'},
+    {jp:'あります',kana:'あります',rom:'arimasu',meaning:'Ada (utk benda mati)',tag:'Kata Kerja G1'},
+    {jp:'分かります',kana:'わかります',rom:'wakarimasu',meaning:'Mengerti',tag:'Kata Kerja G1'},
+    {jp:'かかります',kana:'かかります',rom:'kakarimasu',meaning:'Memerlukan (waktu)',tag:'Kata Kerja G1'},
+    {jp:'遊びます',kana:'あそびます',rom:'asobimasu',meaning:'Bermain',tag:'Kata Kerja G1'},
+    {jp:'送ります',kana:'おくります',rom:'okurimasu',meaning:'Mengirim (paket) / Mengantar (orang)',tag:'Kata Kerja G1'},
+    {jp:'入ります',kana:'はいります',rom:'hairimasu',meaning:'Masuk (kamar)',tag:'Kata Kerja G1'},
+    {jp:'呼びます',kana:'よびます',rom:'yobimasu',meaning:'Memanggil',tag:'Kata Kerja G1'},
+    {jp:'急ぎます',kana:'いそぎます',rom:'isogimasu',meaning:'Tergesa-gesa',tag:'Kata Kerja G1'},
+    {jp:'待ちます',kana:'まちます',rom:'machimasu',meaning:'Menunggu',tag:'Kata Kerja G1'},
+    {jp:'手伝います',kana:'てつだいます',rom:'tetsudaimasu',meaning:'Membantu',tag:'Kata Kerja G1'},
+    {jp:'言います',kana:'いいます',rom:'iimasu',meaning:'Berkata / Bilang',tag:'Kata Kerja G1'},
+    {jp:'話します',kana:'はなします',rom:'hanashimasu',meaning:'Berbicara',tag:'Kata Kerja G1'},
+    {jp:'降ります',kana:'ふります',rom:'furimasu',meaning:'Turun (hujan)',tag:'Kata Kerja G1'},
+    {jp:'押します',kana:'おします',rom:'oshimasu',meaning:'Mendorong / Menekan',tag:'Kata Kerja G1'},
+    {jp:'回します',kana:'まわします',rom:'mawashimasu',meaning:'Memutar',tag:'Kata Kerja G1'},
+    {jp:'動きます',kana:'うごきます',rom:'ugokimasu',meaning:'Bergerak / Berjalan',tag:'Kata Kerja G1'},
+    {jp:'曲がります',kana:'まがります',rom:'magarimasu',meaning:'Belok (kanan-kiri)',tag:'Kata Kerja G1'},
+    {jp:'困ります',kana:'こまります',rom:'komarimasu',meaning:'Susah / Repot',tag:'Kata Kerja G1'},
   ]
 };
 
-const DEFAULT_VERB_G1_P2 = {
-  id:'verb_g1_p2', title:'Kata Kerja Group 1 — Part 2', desc:'動詞グループ1 · Part 2 (15 kata)',
-  icon:'⚡', iconBg:'ic-amber',
+const VERB_G1_P2 = {
+  id:'verb_g1_p2', title:'Kata Kerja Group 1 — Part 2', desc:'No. 36–70',
+  icon:'⚡', iconBg:'ic-red',
   words:[
-    {jp:'勝ちます',kana:'かちます',rom:'kachimasu',meaning:'menang',tag:'Kata Kerja G1'},
-    {jp:'死にます',kana:'しにます',rom:'shinimasu',meaning:'meninggal / mati',tag:'Kata Kerja G1'},
-    {jp:'遊びます',kana:'あそびます',rom:'asobimasu',meaning:'bermain',tag:'Kata Kerja G1'},
-    {jp:'飛びます',kana:'とびます',rom:'tobimasu',meaning:'terbang / melompat',tag:'Kata Kerja G1'},
-    {jp:'呼びます',kana:'よびます',rom:'yobimasu',meaning:'memanggil',tag:'Kata Kerja G1'},
-    {jp:'選びます',kana:'えらびます',rom:'erabimasu',meaning:'memilih',tag:'Kata Kerja G1'},
-    {jp:'読みます',kana:'よみます',rom:'yomimasu',meaning:'membaca',tag:'Kata Kerja G1'},
-    {jp:'飲みます',kana:'のみます',rom:'nomimasu',meaning:'minum',tag:'Kata Kerja G1'},
-    {jp:'休みます',kana:'やすみます',rom:'yasumimasu',meaning:'beristirahat / libur',tag:'Kata Kerja G1'},
-    {jp:'住みます',kana:'すみます',rom:'sumimasu',meaning:'tinggal / berdomisili',tag:'Kata Kerja G1'},
-    {jp:'頼みます',kana:'たのみます',rom:'tanomimasu',meaning:'meminta tolong / memesan',tag:'Kata Kerja G1'},
-    {jp:'帰ります',kana:'かえります',rom:'kaerimasu',meaning:'pulang',tag:'Kata Kerja G1'},
-    {jp:'乗ります',kana:'のります',rom:'norimasu',meaning:'naik (kendaraan)',tag:'Kata Kerja G1'},
-    {jp:'作ります',kana:'つくります',rom:'tsukurimasu',meaning:'membuat',tag:'Kata Kerja G1'},
-    {jp:'売ります',kana:'うります',rom:'urimasu',meaning:'menjual',tag:'Kata Kerja G1'},
+    {jp:'消します',kana:'けします',rom:'keshimasu',meaning:'Mematikan (listrik)',tag:'Kata Kerja G1'},
+    {jp:'座ります',kana:'すわります',rom:'suwarimasu',meaning:'Duduk',tag:'Kata Kerja G1'},
+    {jp:'使います',kana:'つかいます',rom:'tsukaimasu',meaning:'Menggunakan',tag:'Kata Kerja G1'},
+    {jp:'立ちます',kana:'たちます',rom:'tachimasu',meaning:'Berdiri',tag:'Kata Kerja G1'},
+    {jp:'置きます',kana:'おきます',rom:'okimasu',meaning:'Meletakkan / Menaruh',tag:'Kata Kerja G1'},
+    {jp:'作ります',kana:'つくります',rom:'tsukurimasu',meaning:'Membuat',tag:'Kata Kerja G1'},
+    {jp:'売ります',kana:'うります',rom:'urimasu',meaning:'Menjual',tag:'Kata Kerja G1'},
+    {jp:'知ります',kana:'しります',rom:'shirimasu',meaning:'Mengetahui / Kenal',tag:'Kata Kerja G1'},
+    {jp:'持ちます',kana:'もちます',rom:'mochimasu',meaning:'Memegang',tag:'Kata Kerja G1'},
+    {jp:'住みます',kana:'すみます',rom:'sumimasu',meaning:'Bermukim / Tinggal',tag:'Kata Kerja G1'},
+    {jp:'歩きます',kana:'あるきます',rom:'arukimasu',meaning:'Berjalan kaki',tag:'Kata Kerja G1'},
+    {jp:'乗ります',kana:'のります',rom:'norimasu',meaning:'Naik (kereta)',tag:'Kata Kerja G1'},
+    {jp:'洗います',kana:'あらいます',rom:'araimasu',meaning:'Mencuci (tangan)',tag:'Kata Kerja G1'},
+    {jp:'なくします',kana:'なくします',rom:'nakushimasu',meaning:'Kehilangan / Hilang',tag:'Kata Kerja G1'},
+    {jp:'出します',kana:'だします',rom:'dashimasu',meaning:'Mengajukan (pendapat)',tag:'Kata Kerja G1'},
+    {jp:'返します',kana:'かえします',rom:'kaeshimasu',meaning:'Mengembalikan',tag:'Kata Kerja G1'},
+    {jp:'払います',kana:'はらいます',rom:'haraimasu',meaning:'Membayar',tag:'Kata Kerja G1'},
+    {jp:'脱ぎます',kana:'ぬぎます',rom:'nugimasu',meaning:'Membuka (sepatu)',tag:'Kata Kerja G1'},
+    {jp:'触ります',kana:'さわります',rom:'sawarimasu',meaning:'Menyentuh (mesin)',tag:'Kata Kerja G1'},
+    {jp:'歌います',kana:'うたいます',rom:'utaimasu',meaning:'Menyanyi',tag:'Kata Kerja G1'},
+    {jp:'弾きます',kana:'ひきます',rom:'hikimasu',meaning:'Bermain (gitar)',tag:'Kata Kerja G1'},
+    {jp:'泳ぎます',kana:'およぎます',rom:'oyogimasu',meaning:'Berenang',tag:'Kata Kerja G1'},
+    {jp:'直します',kana:'なおします',rom:'naoshimasu',meaning:'Memperbaiki / Membetul',tag:'Kata Kerja G1'},
+    {jp:'泊まります',kana:'とまります',rom:'tomarimasu',meaning:'Menginap (di rumah)',tag:'Kata Kerja G1'},
+    {jp:'なります',kana:'なります',rom:'narimasu',meaning:'Menjadi (pintar)',tag:'Kata Kerja G1'},
+    {jp:'要ります',kana:'いります',rom:'irimasu',meaning:'Memerlukan (kamus)',tag:'Kata Kerja G1'},
+    {jp:'思います',kana:'おもいます',rom:'omoimasu',meaning:'Berpikir / Mengira',tag:'Kata Kerja G1'},
+    {jp:'かぶります',kana:'かぶります',rom:'kaburimasu',meaning:'Memakai (topi)',tag:'Kata Kerja G1'},
+    {jp:'履きます',kana:'はきます',rom:'hakimasu',meaning:'Memakai (sepatu)',tag:'Kata Kerja G1'},
+    {jp:'役に立ちます',kana:'やくにたちます',rom:'yakunitachimasu',meaning:'Bermanfaat / Berguna',tag:'Kata Kerja G1'},
+    {jp:'頑張ります',kana:'がんばります',rom:'ganbarimasu',meaning:'Semangat / Berusaha',tag:'Kata Kerja G1'},
+    {jp:'渡ります',kana:'わたります',rom:'watarimasu',meaning:'Menyebrang (jalan)',tag:'Kata Kerja G1'},
+    {jp:'着きます',kana:'つきます',rom:'tsukimasu',meaning:'Tiba / Sampai',tag:'Kata Kerja G1'},
+    {jp:'持って行きます',kana:'もっていきます',rom:'motte ikimasu',meaning:'Membawa Pergi (barang)',tag:'Kata Kerja G1'},
+    {jp:'連れて行きます',kana:'つれていきます',rom:'tsurete ikimasu',meaning:'Membawa Pergi (orang)',tag:'Kata Kerja G1'},
   ]
 };
 
-const DEFAULT_VERB_G1_P3 = {
-  id:'verb_g1_p3', title:'Kata Kerja Group 1 — Part 3', desc:'動詞グループ1 · Part 3 (15 kata)',
-  icon:'🌟', iconBg:'ic-blue',
+const VERB_G2_P1 = {
+  id:'verb_g2_p1', title:'Kata Kerja Group 2', desc:'No. 21–34',
+  icon:'💧', iconBg:'ic-blue',
   words:[
-    {jp:'走ります',kana:'はしります',rom:'hashirimasu',meaning:'berlari',tag:'Kata Kerja G1'},
-    {jp:'切ります',kana:'きります',rom:'kirimasu',meaning:'memotong',tag:'Kata Kerja G1'},
-    {jp:'撮ります',kana:'とります',rom:'torimasu',meaning:'mengambil foto',tag:'Kata Kerja G1'},
-    {jp:'送ります',kana:'おくります',rom:'okurimasu',meaning:'mengirim / mengantar',tag:'Kata Kerja G1'},
-    {jp:'終わります',kana:'おわります',rom:'owarimasu',meaning:'selesai / berakhir',tag:'Kata Kerja G1'},
-    {jp:'始まります',kana:'はじまります',rom:'hajimarimasu',meaning:'dimulai',tag:'Kata Kerja G1'},
-    {jp:'泊まります',kana:'とまります',rom:'tomarimasu',meaning:'menginap',tag:'Kata Kerja G1'},
-    {jp:'困ります',kana:'こまります',rom:'komarimasu',meaning:'kesulitan / bingung',tag:'Kata Kerja G1'},
-    {jp:'わかります',kana:'わかります',rom:'wakarimasu',meaning:'mengerti / paham',tag:'Kata Kerja G1'},
-    {jp:'あります',kana:'あります',rom:'arimasu',meaning:'ada (benda mati)',tag:'Kata Kerja G1'},
-    {jp:'行きます',kana:'いきます',rom:'ikimasu',meaning:'pergi',tag:'Kata Kerja G1'},
-    {jp:'買います',kana:'かいます',rom:'kaimasu',meaning:'membeli',tag:'Kata Kerja G1'},
-    {jp:'会います',kana:'あいます',rom:'aimasu',meaning:'bertemu',tag:'Kata Kerja G1'},
-    {jp:'使います',kana:'つかいます',rom:'tsukaimasu',meaning:'menggunakan',tag:'Kata Kerja G1'},
-    {jp:'歌います',kana:'うたいます',rom:'utaimasu',meaning:'bernyanyi',tag:'Kata Kerja G1'},
-  ]
-};
-
-const DEFAULT_VERB_G1_P4 = {
-  id:'verb_g1_p4', title:'Kata Kerja Group 1 — Part 4', desc:'動詞グループ1 · Part 4 (15 kata)',
-  icon:'🏃', iconBg:'ic-purple',
-  words:[
-    {jp:'言います',kana:'いいます',rom:'iimasu',meaning:'berkata / mengatakan',tag:'Kata Kerja G1'},
-    {jp:'思います',kana:'おもいます',rom:'omoimasu',meaning:'berpikir / beranggapan',tag:'Kata Kerja G1'},
-    {jp:'笑います',kana:'わらいます',rom:'waraimasu',meaning:'tertawa',tag:'Kata Kerja G1'},
-    {jp:'手伝います',kana:'てつだいます',rom:'tetsudaimasu',meaning:'membantu',tag:'Kata Kerja G1'},
-    {jp:'もらいます',kana:'もらいます',rom:'moraimasu',meaning:'menerima',tag:'Kata Kerja G1'},
-    {jp:'払います',kana:'はらいます',rom:'haraimasu',meaning:'membayar',tag:'Kata Kerja G1'},
-    {jp:'違います',kana:'ちがいます',rom:'chigaimasu',meaning:'berbeda / salah',tag:'Kata Kerja G1'},
-    {jp:'座ります',kana:'すわります',rom:'suwarimasu',meaning:'duduk',tag:'Kata Kerja G1'},
-    {jp:'曲がります',kana:'まがります',rom:'magarimasu',meaning:'berbelok',tag:'Kata Kerja G1'},
-    {jp:'渡ります',kana:'わたります',rom:'watarimasu',meaning:'menyeberang',tag:'Kata Kerja G1'},
-    {jp:'着きます',kana:'つきます',rom:'tsukimasu',meaning:'tiba',tag:'Kata Kerja G1'},
-    {jp:'働きます',kana:'はたらきます',rom:'hatarakimasu',meaning:'bekerja',tag:'Kata Kerja G1'},
-    {jp:'歩きます',kana:'あるきます',rom:'arukimasu',meaning:'berjalan',tag:'Kata Kerja G1'},
-    {jp:'探します',kana:'さがします',rom:'sagashimasu',meaning:'mencari',tag:'Kata Kerja G1'},
-    {jp:'入ります',kana:'はいります',rom:'hairimasu',meaning:'masuk',tag:'Kata Kerja G1'},
-  ]
-};
-
-const DEFAULT_VERB_G1_P5 = {
-  id:'verb_g1_p5', title:'Kata Kerja Group 1 — Part 5', desc:'動詞グループ1 · Part 5 (15 kata)',
-  icon:'📚', iconBg:'ic-green',
-  words:[
-    {jp:'知ります',kana:'しります',rom:'shirimasu',meaning:'mengetahui / mengenal',tag:'Kata Kerja G1'},
-    {jp:'触ります',kana:'さわります',rom:'sawarimasu',meaning:'menyentuh',tag:'Kata Kerja G1'},
-    {jp:'怒ります',kana:'おこります',rom:'okorimasu',meaning:'marah',tag:'Kata Kerja G1'},
-    {jp:'頑張ります',kana:'がんばります',rom:'ganbarimasu',meaning:'berusaha keras / semangat',tag:'Kata Kerja G1'},
-    {jp:'開きます',kana:'ひらきます',rom:'hirakimasu',meaning:'terbuka',tag:'Kata Kerja G1'},
-    {jp:'閉まります',kana:'しまります',rom:'shimarimasu',meaning:'tertutup',tag:'Kata Kerja G1'},
-    {jp:'通います',kana:'かよいます',rom:'kayoimasu',meaning:'pergi-pulang rutin (sekolah/kerja)',tag:'Kata Kerja G1'},
-    {jp:'動きます',kana:'うごきます',rom:'ugokimasu',meaning:'bergerak',tag:'Kata Kerja G1'},
-    {jp:'直します',kana:'なおします',rom:'naoshimasu',meaning:'memperbaiki',tag:'Kata Kerja G1'},
-    {jp:'なくします',kana:'なくします',rom:'nakushimasu',meaning:'menghilangkan (barang)',tag:'Kata Kerja G1'},
-    {jp:'喜びます',kana:'よろこびます',rom:'yorokobimasu',meaning:'senang / bergembira',tag:'Kata Kerja G1'},
-    {jp:'並びます',kana:'ならびます',rom:'narabimasu',meaning:'mengantre / berbaris',tag:'Kata Kerja G1'},
-    {jp:'学びます',kana:'まなびます',rom:'manabimasu',meaning:'belajar / mempelajari',tag:'Kata Kerja G1'},
-    {jp:'戻ります',kana:'もどります',rom:'modorimasu',meaning:'kembali',tag:'Kata Kerja G1'},
-    {jp:'習います',kana:'ならいます',rom:'naraimasu',meaning:'belajar (dari pengajar)',tag:'Kata Kerja G1'},
-  ]
-};
-
-const DEFAULT_VERB_G2_P1 = {
-  id:'verb_g2_p1', title:'Kata Kerja Group 2 — Part 1', desc:'動詞グループ2 · Part 1 (15 kata)',
-  icon:'🍃', iconBg:'ic-green',
-  words:[
-    {jp:'食べます',kana:'たべます',rom:'tabemasu',meaning:'makan',tag:'Kata Kerja G2'},
-    {jp:'見ます',kana:'みます',rom:'mimasu',meaning:'melihat',tag:'Kata Kerja G2'},
-    {jp:'起きます',kana:'おきます',rom:'okimasu',meaning:'bangun',tag:'Kata Kerja G2'},
-    {jp:'寝ます',kana:'ねます',rom:'nemasu',meaning:'tidur',tag:'Kata Kerja G2'},
-    {jp:'借ります',kana:'かります',rom:'karimasu',meaning:'meminjam',tag:'Kata Kerja G2'},
-    {jp:'できます',kana:'できます',rom:'dekimasu',meaning:'bisa / mampu',tag:'Kata Kerja G2'},
-    {jp:'浴びます',kana:'あびます',rom:'abimasu',meaning:'mandi (shower)',tag:'Kata Kerja G2'},
-    {jp:'降ります',kana:'おります',rom:'orimasu',meaning:'turun (dari kendaraan)',tag:'Kata Kerja G2'},
-    {jp:'着ます',kana:'きます',rom:'kimasu',meaning:'memakai (baju)',tag:'Kata Kerja G2'},
-    {jp:'教えます',kana:'おしえます',rom:'oshiemasu',meaning:'mengajar / memberitahu',tag:'Kata Kerja G2'},
-    {jp:'覚えます',kana:'おぼえます',rom:'oboemasu',meaning:'mengingat / menghafal',tag:'Kata Kerja G2'},
-    {jp:'忘れます',kana:'わすれます',rom:'wasuremasu',meaning:'melupakan',tag:'Kata Kerja G2'},
-    {jp:'かけます',kana:'かけます',rom:'kakemasu',meaning:'menelepon / memakai kacamata',tag:'Kata Kerja G2'},
-    {jp:'つけます',kana:'つけます',rom:'tsukemasu',meaning:'menyalakan',tag:'Kata Kerja G2'},
-    {jp:'やめます',kana:'やめます',rom:'yamemasu',meaning:'berhenti / mengundurkan diri',tag:'Kata Kerja G2'},
-  ]
-};
-
-const DEFAULT_VERB_G2_P2 = {
-  id:'verb_g2_p2', title:'Kata Kerja Group 2 — Part 2', desc:'動詞グループ2 · Part 2 (15 kata)',
-  icon:'💎', iconBg:'ic-purple',
-  words:[
-    {jp:'開けます',kana:'あけます',rom:'akemasu',meaning:'membuka',tag:'Kata Kerja G2'},
-    {jp:'閉めます',kana:'しめます',rom:'shimemasu',meaning:'menutup',tag:'Kata Kerja G2'},
-    {jp:'入れます',kana:'いれます',rom:'iremasu',meaning:'memasukkan',tag:'Kata Kerja G2'},
-    {jp:'出ます',kana:'でます',rom:'demasu',meaning:'keluar / hadir',tag:'Kata Kerja G2'},
-    {jp:'換えます',kana:'かえます',rom:'kaemasu',meaning:'menukar',tag:'Kata Kerja G2'},
-    {jp:'疲れます',kana:'つかれます',rom:'tsukaremasu',meaning:'lelah',tag:'Kata Kerja G2'},
-    {jp:'答えます',kana:'こたえます',rom:'kotaemasu',meaning:'menjawab',tag:'Kata Kerja G2'},
-    {jp:'生まれます',kana:'うまれます',rom:'umaremasu',meaning:'lahir',tag:'Kata Kerja G2'},
-    {jp:'見せます',kana:'みせます',rom:'misemasu',meaning:'menunjukkan / memperlihatkan',tag:'Kata Kerja G2'},
-    {jp:'続けます',kana:'つづけます',rom:'tsudukemasu',meaning:'melanjutkan',tag:'Kata Kerja G2'},
-    {jp:'始めます',kana:'はじめます',rom:'hajimemasu',meaning:'memulai',tag:'Kata Kerja G2'},
-    {jp:'止めます',kana:'とめます',rom:'tomemasu',meaning:'menghentikan',tag:'Kata Kerja G2'},
-    {jp:'集めます',kana:'あつめます',rom:'atsumemasu',meaning:'mengumpulkan',tag:'Kata Kerja G2'},
-    {jp:'別れます',kana:'わかれます',rom:'wakaremasu',meaning:'berpisah',tag:'Kata Kerja G2'},
-    {jp:'慣れます',kana:'なれます',rom:'naremasu',meaning:'menjadi biasa / terbiasa',tag:'Kata Kerja G2'},
-  ]
-};
-
-const DEFAULT_VERB_G2_P3 = {
-  id:'verb_g2_p3', title:'Kata Kerja Group 2 — Part 3', desc:'動詞グループ2 · Part 3 (15 kata)',
-  icon:'🍂', iconBg:'ic-blue',
-  words:[
-    {jp:'数えます',kana:'かぞえます',rom:'kazoemasu',meaning:'menghitung',tag:'Kata Kerja G2'},
-    {jp:'考えます',kana:'かんがえます',rom:'kangaemasu',meaning:'berpikir / mempertimbangkan',tag:'Kata Kerja G2'},
-    {jp:'比べます',kana:'くらべます',rom:'kurabemasu',meaning:'membandingkan',tag:'Kata Kerja G2'},
-    {jp:'調べます',kana:'しらべます',rom:'shirabemasu',meaning:'memeriksa / menyelidiki',tag:'Kata Kerja G2'},
-    {jp:'育てます',kana:'そだてます',rom:'sodatemasu',meaning:'membesarkan / merawat',tag:'Kata Kerja G2'},
-    {jp:'助けます',kana:'たすけます',rom:'tasukemasu',meaning:'menolong',tag:'Kata Kerja G2'},
-    {jp:'届けます',kana:'とどけます',rom:'todokemasu',meaning:'mengantarkan / melaporkan',tag:'Kata Kerja G2'},
-    {jp:'投げます',kana:'なげます',rom:'nagemasu',meaning:'melempar',tag:'Kata Kerja G2'},
-    {jp:'逃げます',kana:'にげます',rom:'nigemasu',meaning:'melarikan diri',tag:'Kata Kerja G2'},
-    {jp:'任せます',kana:'まかせます',rom:'makasemasu',meaning:'mempercayakan',tag:'Kata Kerja G2'},
-    {jp:'燃えます',kana:'もえます',rom:'moemasu',meaning:'terbakar',tag:'Kata Kerja G2'},
-    {jp:'痩せます',kana:'やせます',rom:'yasemasu',meaning:'menjadi kurus',tag:'Kata Kerja G2'},
-    {jp:'揺れます',kana:'ゆれます',rom:'yuremasu',meaning:'bergetar / berguncang',tag:'Kata Kerja G2'},
-    {jp:'分けます',kana:'わけます',rom:'wakemasu',meaning:'membagi',tag:'Kata Kerja G2'},
-    {jp:'加えます',kana:'くわえます',rom:'kuwaemasu',meaning:'menambahkan',tag:'Kata Kerja G2'},
-  ]
-};
-
-const DEFAULT_VERB_G3_P1 = {
-  id:'verb_g3_p1', title:'Kata Kerja Group 3 — Part 1', desc:'動詞グループ3 (tidak beraturan) · 15 kata',
-  icon:'🎌', iconBg:'ic-red',
-  words:[
-    {jp:'します',kana:'します',rom:'shimasu',meaning:'melakukan',tag:'Kata Kerja G3'},
-    {jp:'来ます',kana:'きます',rom:'kimasu',meaning:'datang',tag:'Kata Kerja G3'},
-    {jp:'勉強します',kana:'べんきょうします',rom:'benkyou shimasu',meaning:'belajar',tag:'Kata Kerja G3'},
-    {jp:'練習します',kana:'れんしゅうします',rom:'renshuu shimasu',meaning:'berlatih',tag:'Kata Kerja G3'},
-    {jp:'散歩します',kana:'さんぽします',rom:'sanpo shimasu',meaning:'jalan-jalan / berjalan kaki',tag:'Kata Kerja G3'},
-    {jp:'洗濯します',kana:'せんたくします',rom:'sentaku shimasu',meaning:'mencuci (pakaian)',tag:'Kata Kerja G3'},
-    {jp:'掃除します',kana:'そうじします',rom:'souji shimasu',meaning:'membersihkan',tag:'Kata Kerja G3'},
-    {jp:'旅行します',kana:'りょこうします',rom:'ryokou shimasu',meaning:'bepergian / travel',tag:'Kata Kerja G3'},
-    {jp:'電話します',kana:'でんわします',rom:'denwa shimasu',meaning:'menelepon',tag:'Kata Kerja G3'},
-    {jp:'質問します',kana:'しつもんします',rom:'shitsumon shimasu',meaning:'bertanya',tag:'Kata Kerja G3'},
-    {jp:'説明します',kana:'せつめいします',rom:'setsumei shimasu',meaning:'menjelaskan',tag:'Kata Kerja G3'},
-    {jp:'案内します',kana:'あんないします',rom:'annai shimasu',meaning:'memandu / menunjukkan jalan',tag:'Kata Kerja G3'},
-    {jp:'紹介します',kana:'しょうかいします',rom:'shoukai shimasu',meaning:'memperkenalkan',tag:'Kata Kerja G3'},
-    {jp:'予約します',kana:'よやくします',rom:'yoyaku shimasu',meaning:'memesan / reservasi',tag:'Kata Kerja G3'},
-    {jp:'結婚します',kana:'けっこんします',rom:'kekkon shimasu',meaning:'menikah',tag:'Kata Kerja G3'},
-  ]
-};
-
-const DEFAULT_VERB_G3_P2 = {
-  id:'verb_g3_p2', title:'Kata Kerja Group 3 — Part 2', desc:'動詞グループ3 (tidak beraturan) · Part 2 (15 kata)',
-  icon:'🎏', iconBg:'ic-amber',
-  words:[
-    {jp:'運動します',kana:'うんどうします',rom:'undou shimasu',meaning:'berolahraga',tag:'Kata Kerja G3'},
-    {jp:'料理します',kana:'りょうりします',rom:'ryouri shimasu',meaning:'memasak',tag:'Kata Kerja G3'},
-    {jp:'出発します',kana:'しゅっぱつします',rom:'shuppatsu shimasu',meaning:'berangkat',tag:'Kata Kerja G3'},
-    {jp:'到着します',kana:'とうちゃくします',rom:'touchaku shimasu',meaning:'tiba',tag:'Kata Kerja G3'},
-    {jp:'卒業します',kana:'そつぎょうします',rom:'sotsugyou shimasu',meaning:'lulus',tag:'Kata Kerja G3'},
-    {jp:'入学します',kana:'にゅうがくします',rom:'nyuugaku shimasu',meaning:'masuk sekolah',tag:'Kata Kerja G3'},
-    {jp:'入院します',kana:'にゅういんします',rom:'nyuuin shimasu',meaning:'dirawat di rumah sakit',tag:'Kata Kerja G3'},
-    {jp:'心配します',kana:'しんぱいします',rom:'shinpai shimasu',meaning:'mengkhawatirkan',tag:'Kata Kerja G3'},
-    {jp:'安心します',kana:'あんしんします',rom:'anshin shimasu',meaning:'merasa tenang / lega',tag:'Kata Kerja G3'},
-    {jp:'利用します',kana:'りようします',rom:'riyou shimasu',meaning:'menggunakan / memanfaatkan',tag:'Kata Kerja G3'},
-    {jp:'準備します',kana:'じゅんびします',rom:'junbi shimasu',meaning:'menyiapkan',tag:'Kata Kerja G3'},
-    {jp:'招待します',kana:'しょうたいします',rom:'shoutai shimasu',meaning:'mengundang',tag:'Kata Kerja G3'},
-    {jp:'注文します',kana:'ちゅうもんします',rom:'chuumon shimasu',meaning:'memesan (makanan)',tag:'Kata Kerja G3'},
-    {jp:'コピーします',kana:'こぴーします',rom:'kopii shimasu',meaning:'menyalin / fotokopi',tag:'Kata Kerja G3'},
-    {jp:'連絡します',kana:'れんらくします',rom:'renraku shimasu',meaning:'menghubungi',tag:'Kata Kerja G3'},
+    {jp:'気をつけます',kana:'きをつけます',rom:'ki o tsukemasu',meaning:'Hati-hati',tag:'Kata Kerja G2'},
+    {jp:'入れます',kana:'いれます',rom:'iremasu',meaning:'Memasukan (benda)',tag:'Kata Kerja G2'},
+    {jp:'止めます',kana:'とめます',rom:'tomemasu',meaning:'Berhenti / Parkir (mobil)',tag:'Kata Kerja G2'},
+    {jp:'できます',kana:'できます',rom:'dekimasu',meaning:'Bisa / Dapat',tag:'Kata Kerja G2'},
+    {jp:'始めます',kana:'はじめます',rom:'hajimemasu',meaning:'Mulai',tag:'Kata Kerja G2'},
+    {jp:'出かけます',kana:'でかけます',rom:'dekakemasu',meaning:'Pergi Keluar (rumah)',tag:'Kata Kerja G2'},
+    {jp:'着ます',kana:'きます',rom:'kimasu',meaning:'Memakai (kemeja)',tag:'Kata Kerja G2'},
+    {jp:'かけます',kana:'かけます',rom:'kakemasu',meaning:'Memakai (kaca mata)',tag:'Kata Kerja G2'},
+    {jp:'止めます',kana:'やめます',rom:'yamemasu',meaning:'Berhenti (kerja)',tag:'Kata Kerja G2'},
+    {jp:'くれます',kana:'くれます',rom:'kuremasu',meaning:'Memberi (kpd saya)',tag:'Kata Kerja G2'},
+    {jp:'調べます',kana:'しらべます',rom:'shirabemasu',meaning:'Memeriksa',tag:'Kata Kerja G2'},
+    {jp:'考えます',kana:'かんがえます',rom:'kangaemasu',meaning:'Berpikir / Memikirkan',tag:'Kata Kerja G2'},
+    {jp:'片付けます',kana:'かたづけます',rom:'katazukemasu',meaning:'Merapikan / Membereskan',tag:'Kata Kerja G2'},
+    {jp:'続けます',kana:'つづけます',rom:'tsuzukemasu',meaning:'Melanjutkan / Meneruskan',tag:'Kata Kerja G2'},
   ]
 };
 
 const DEFAULT_KANJI1 = {
-  id:'kanji1', title:'N5 — Kanji Dasar 1', desc:'15 kanji dasar paling sering dipakai',
-  icon:'日', iconBg:'ic-amber',
+  id:'kanji1', title:'Kanji Tambahan 1', desc:'Makanan, hiburan, pakaian & tempat (30 kata)',
+  icon:'🏪', iconBg:'ic-amber',
   words:[
-    {jp:'日',kana:'ひ',rom:'hi / nichi',meaning:'matahari / hari',tag:'Kanji'},
-    {jp:'月',kana:'つき',rom:'tsuki',meaning:'bulan',tag:'Kanji'},
-    {jp:'木',kana:'き',rom:'ki',meaning:'pohon',tag:'Kanji'},
-    {jp:'山',kana:'やま',rom:'yama',meaning:'gunung',tag:'Kanji'},
-    {jp:'川',kana:'かわ',rom:'kawa',meaning:'sungai',tag:'Kanji'},
-    {jp:'田',kana:'た',rom:'ta',meaning:'sawah',tag:'Kanji'},
-    {jp:'人',kana:'ひと',rom:'hito',meaning:'orang',tag:'Kanji'},
-    {jp:'口',kana:'くち',rom:'kuchi',meaning:'mulut',tag:'Kanji'},
-    {jp:'車',kana:'くるま',rom:'kuruma',meaning:'mobil',tag:'Kanji'},
-    {jp:'門',kana:'もん',rom:'mon',meaning:'pintu gerbang',tag:'Kanji'},
-    {jp:'火',kana:'ひ',rom:'hi',meaning:'api',tag:'Kanji'},
-    {jp:'水',kana:'みず',rom:'mizu',meaning:'air',tag:'Kanji'},
-    {jp:'室',kana:'しつ',rom:'shitsu',meaning:'kamar / ruangan',tag:'Kanji'},
-    {jp:'家',kana:'いえ',rom:'ie',meaning:'rumah',tag:'Kanji'},
-    {jp:'度',kana:'ど',rom:'do',meaning:'kali / derajat',tag:'Kanji'},
-  ]
-};
-
-const DEFAULT_KANJI2 = {
-  id:'kanji2', title:'Kosakata Kanji — Bagian 1', desc:'Makanan, hiburan & elektronik (15 kata)',
-  icon:'🏪', iconBg:'ic-blue',
-  words:[
-    {jp:'お金',    kana:'おかね',       rom:'okane',        meaning:'uang',           tag:'Kanji'},
-    {jp:'卵',      kana:'たまご',       rom:'tamago',       meaning:'telur',          tag:'Kanji'},
-    {jp:'牛乳',    kana:'ぎゅうにゅう', rom:'gyuunyuu',     meaning:'susu sapi',      tag:'Kanji'},
-    {jp:'果物',    kana:'くだもの',     rom:'kudamono',     meaning:'buah-buahan',    tag:'Kanji'},
-    {jp:'野菜',    kana:'やさい',       rom:'yasai',        meaning:'sayuran',        tag:'Kanji'},
-    {jp:'料理',    kana:'りょうり',     rom:'ryouri',       meaning:'masakan',        tag:'Kanji'},
-    {jp:'歌',      kana:'うた',         rom:'uta',          meaning:'lagu',           tag:'Kanji'},
-    {jp:'音楽',    kana:'おんがく',     rom:'ongaku',       meaning:'musik',          tag:'Kanji'},
-    {jp:'映画',    kana:'えいが',       rom:'eiga',         meaning:'film',           tag:'Kanji'},
-    {jp:'写真',    kana:'しゃしん',     rom:'shashin',      meaning:'foto',           tag:'Kanji'},
-    {jp:'電話',    kana:'でんわ',       rom:'denwa',        meaning:'telepon',        tag:'Kanji'},
-    {jp:'携帯電話',kana:'けいたいでんわ',rom:'keitai denwa', meaning:'ponsel / HP',    tag:'Kanji'},
-    {jp:'時計',    kana:'とけい',       rom:'tokei',        meaning:'jam / arloji',   tag:'Kanji'},
-    {jp:'眼鏡',    kana:'めがね',       rom:'megane',       meaning:'kacamata',       tag:'Kanji'},
-    {jp:'洋服',    kana:'ようふく',     rom:'youfuku',      meaning:'pakaian barat',  tag:'Kanji'},
+    {jp:'お金',     kana:'おかね',        rom:'okane',        meaning:'uang',            tag:'Kanji'},
+    {jp:'卵',       kana:'たまご',        rom:'tamago',       meaning:'telur',           tag:'Kanji'},
+    {jp:'牛乳',     kana:'ぎゅうにゅう',  rom:'gyuunyuu',     meaning:'susu sapi',       tag:'Kanji'},
+    {jp:'果物',     kana:'くだもの',      rom:'kudamono',     meaning:'buah-buahan',     tag:'Kanji'},
+    {jp:'野菜',     kana:'やさい',        rom:'yasai',        meaning:'sayuran',         tag:'Kanji'},
+    {jp:'料理',     kana:'りょうり',      rom:'ryouri',       meaning:'masakan',         tag:'Kanji'},
+    {jp:'歌',       kana:'うた',          rom:'uta',          meaning:'lagu',            tag:'Kanji'},
+    {jp:'音楽',     kana:'おんがく',      rom:'ongaku',       meaning:'musik',           tag:'Kanji'},
+    {jp:'映画',     kana:'えいが',        rom:'eiga',         meaning:'film',            tag:'Kanji'},
+    {jp:'写真',     kana:'しゃしん',      rom:'shashin',      meaning:'foto',            tag:'Kanji'},
+    {jp:'電話',     kana:'でんわ',        rom:'denwa',        meaning:'telepon',         tag:'Kanji'},
+    {jp:'携帯電話', kana:'けいたいでんわ', rom:'keitai denwa', meaning:'ponsel / HP',     tag:'Kanji'},
+    {jp:'時計',     kana:'とけい',        rom:'tokei',        meaning:'jam / arloji',    tag:'Kanji'},
+    {jp:'眼鏡',     kana:'めがね',        rom:'megane',       meaning:'kacamata',        tag:'Kanji'},
+    {jp:'洋服',     kana:'ようふく',      rom:'youfuku',      meaning:'pakaian barat',   tag:'Kanji'},
+    {jp:'帽子',     kana:'ぼうし',        rom:'boushi',       meaning:'topi',            tag:'Kanji'},
+    {jp:'手紙',     kana:'てがみ',        rom:'tegami',       meaning:'surat',           tag:'Kanji'},
+    {jp:'新聞',     kana:'しんぶん',      rom:'shinbun',      meaning:'koran',           tag:'Kanji'},
+    {jp:'辞書',     kana:'じしょ',        rom:'jisho',        meaning:'kamus',           tag:'Kanji'},
+    {jp:'雑誌',     kana:'ざっし',        rom:'zasshi',       meaning:'majalah',         tag:'Kanji'},
+    {jp:'郵便局',   kana:'ゆうびんきょく', rom:'yuubinkyoku',  meaning:'kantor pos',      tag:'Kanji'},
+    {jp:'銀行',     kana:'ぎんこう',      rom:'ginkou',       meaning:'bank',            tag:'Kanji'},
+    {jp:'駅',       kana:'えき',          rom:'eki',          meaning:'stasiun',         tag:'Kanji'},
+    {jp:'空港',     kana:'くうこう',      rom:'kuukou',       meaning:'bandara',         tag:'Kanji'},
+    {jp:'病院',     kana:'びょういん',    rom:'byouin',       meaning:'rumah sakit',     tag:'Kanji'},
+    {jp:'薬局',     kana:'やっきょく',    rom:'yakkyoku',     meaning:'apotek',          tag:'Kanji'},
+    {jp:'店員',     kana:'てんいん',      rom:'ten\'in',      meaning:'pegawai toko',    tag:'Kanji'},
+    {jp:'お客',     kana:'おきゃく',      rom:'okyaku',       meaning:'tamu / pelanggan',tag:'Kanji'},
+    {jp:'地図',     kana:'ちず',          rom:'chizu',        meaning:'peta',            tag:'Kanji'},
+    {jp:'切符',     kana:'きっぷ',        rom:'kippu',        meaning:'tiket',           tag:'Kanji'},
   ]
 };
 
 const DEFAULT_KANJI3 = {
-  id:'kanji3', title:'Kosakata Kanji — Bagian 2', desc:'Pakaian, bacaan & tempat (15 kata)',
-  icon:'🗺️', iconBg:'ic-green',
+  id:'kanji3', title:'Kanji Tambahan 2', desc:'Alam, hewan & kehidupan sehari-hari (30 kata)',
+  icon:'🌄', iconBg:'ic-green',
   words:[
-    {jp:'帽子',   kana:'ぼうし',       rom:'boushi',       meaning:'topi',           tag:'Kanji'},
-    {jp:'手紙',   kana:'てがみ',       rom:'tegami',       meaning:'surat',          tag:'Kanji'},
-    {jp:'新聞',   kana:'しんぶん',     rom:'shinbun',      meaning:'koran',          tag:'Kanji'},
-    {jp:'辞書',   kana:'じしょ',       rom:'jisho',        meaning:'kamus',          tag:'Kanji'},
-    {jp:'雑誌',   kana:'ざっし',       rom:'zasshi',       meaning:'majalah',        tag:'Kanji'},
-    {jp:'郵便局', kana:'ゆうびんきょく',rom:'yuubinkyoku',  meaning:'kantor pos',     tag:'Kanji'},
-    {jp:'銀行',   kana:'ぎんこう',     rom:'ginkou',       meaning:'bank',           tag:'Kanji'},
-    {jp:'駅',     kana:'えき',         rom:'eki',          meaning:'stasiun',        tag:'Kanji'},
-    {jp:'空港',   kana:'くうこう',     rom:'kuukou',       meaning:'bandara',        tag:'Kanji'},
-    {jp:'病院',   kana:'びょういん',   rom:'byouin',       meaning:'rumah sakit',    tag:'Kanji'},
-    {jp:'薬局',   kana:'やっきょく',   rom:'yakkyoku',     meaning:'apotek',         tag:'Kanji'},
-    {jp:'店員',   kana:'てんいん',     rom:'ten\'in',      meaning:'pegawai toko',   tag:'Kanji'},
-    {jp:'お客',   kana:'おきゃく',     rom:'okyaku',       meaning:'tamu / pelanggan',tag:'Kanji'},
-    {jp:'地図',   kana:'ちず',         rom:'chizu',        meaning:'peta',           tag:'Kanji'},
-    {jp:'切符',   kana:'きっぷ',       rom:'kippu',        meaning:'tiket',          tag:'Kanji'},
-  ]
-};
-
-const DEFAULT_KANJI4 = {
-  id:'kanji4', title:'Kosakata Kanji — Bagian 3', desc:'Alam, tempat & hewan (15 kata)',
-  icon:'🌄', iconBg:'ic-purple',
-  words:[
-    {jp:'太陽', kana:'たいよう', rom:'taiyou', meaning:'matahari',              tag:'Kanji'},
-    {jp:'海',   kana:'うみ',     rom:'umi',    meaning:'laut',                  tag:'Kanji'},
-    {jp:'川',   kana:'かわ',     rom:'kawa',   meaning:'sungai',                tag:'Kanji'},
-    {jp:'山',   kana:'やま',     rom:'yama',   meaning:'gunung',                tag:'Kanji'},
-    {jp:'道',   kana:'みち',     rom:'michi',  meaning:'jalan',                 tag:'Kanji'},
-    {jp:'地',   kana:'ち',       rom:'chi',    meaning:'tanah / bumi',          tag:'Kanji'},
-    {jp:'庭',   kana:'にわ',     rom:'niwa',   meaning:'halaman / taman rumah', tag:'Kanji'},
-    {jp:'公園', kana:'こうえん', rom:'kouen',  meaning:'taman umum',            tag:'Kanji'},
-    {jp:'神社', kana:'じんじゃ', rom:'jinja',  meaning:'kuil Shinto',           tag:'Kanji'},
-    {jp:'お寺', kana:'おてら',   rom:'otera',  meaning:'kuil Buddha / vihara',  tag:'Kanji'},
-    {jp:'鳥',   kana:'とり',     rom:'tori',   meaning:'burung',                tag:'Kanji'},
-    {jp:'犬',   kana:'いぬ',     rom:'inu',    meaning:'anjing',                tag:'Kanji'},
-    {jp:'猫',   kana:'ねこ',     rom:'neko',   meaning:'kucing',                tag:'Kanji'},
-    {jp:'馬',   kana:'うま',     rom:'uma',    meaning:'kuda',                  tag:'Kanji'},
-    {jp:'牛',   kana:'うし',     rom:'ushi',   meaning:'sapi',                  tag:'Kanji'},
-  ]
-};
-
-const DEFAULT_KANJI5 = {
-  id:'kanji5', title:'Kosakata Kanji — Bagian 4', desc:'Langit & kehidupan sehari-hari (15 kata)',
-  icon:'🏙️', iconBg:'ic-red',
-  words:[
+    {jp:'太陽', kana:'たいよう',   rom:'taiyou',    meaning:'matahari',                tag:'Kanji'},
+    {jp:'海',   kana:'うみ',       rom:'umi',        meaning:'laut',                    tag:'Kanji'},
+    {jp:'川',   kana:'かわ',       rom:'kawa',       meaning:'sungai',                  tag:'Kanji'},
+    {jp:'山',   kana:'やま',       rom:'yama',       meaning:'gunung',                  tag:'Kanji'},
+    {jp:'道',   kana:'みち',       rom:'michi',      meaning:'jalan',                   tag:'Kanji'},
+    {jp:'地',   kana:'ち',         rom:'chi',        meaning:'tanah / bumi',            tag:'Kanji'},
+    {jp:'庭',   kana:'にわ',       rom:'niwa',       meaning:'halaman / taman rumah',   tag:'Kanji'},
+    {jp:'公園', kana:'こうえん',   rom:'kouen',      meaning:'taman umum',              tag:'Kanji'},
+    {jp:'神社', kana:'じんじゃ',   rom:'jinja',      meaning:'kuil Shinto',             tag:'Kanji'},
+    {jp:'お寺', kana:'おてら',     rom:'otera',      meaning:'kuil Buddha / vihara',    tag:'Kanji'},
+    {jp:'鳥',   kana:'とり',       rom:'tori',       meaning:'burung',                  tag:'Kanji'},
+    {jp:'犬',   kana:'いぬ',       rom:'inu',        meaning:'anjing',                  tag:'Kanji'},
+    {jp:'猫',   kana:'ねこ',       rom:'neko',       meaning:'kucing',                  tag:'Kanji'},
+    {jp:'馬',   kana:'うま',       rom:'uma',        meaning:'kuda',                    tag:'Kanji'},
+    {jp:'牛',   kana:'うし',       rom:'ushi',       meaning:'sapi',                    tag:'Kanji'},
     {jp:'魚',   kana:'さかな',     rom:'sakana',     meaning:'ikan',                    tag:'Kanji'},
     {jp:'空',   kana:'そら',       rom:'sora',       meaning:'langit',                  tag:'Kanji'},
     {jp:'星',   kana:'ほし',       rom:'hoshi',      meaning:'bintang',                 tag:'Kanji'},
@@ -1001,8 +1211,8 @@ const DEFAULT_KANJI5 = {
     {jp:'工事', kana:'こうじ',     rom:'kouji',      meaning:'konstruksi / pembangunan',tag:'Kanji'},
     {jp:'電気', kana:'でんき',     rom:'denki',      meaning:'listrik',                 tag:'Kanji'},
     {jp:'水道', kana:'すいどう',   rom:'suidou',     meaning:'saluran air / PAM',       tag:'Kanji'},
-    {jp:'ガス', kana:'がす',       rom:'gasu',       meaning:'gas',                     tag:'Kanji'},
-    {jp:'ゴミ', kana:'ごみ',       rom:'gomi',       meaning:'sampah',                  tag:'Kanji'},
+    {jp:'ガス', kana:'ガス',       rom:'gasu',       meaning:'gas',                     tag:'Kanji'},
+    {jp:'ゴミ', kana:'ゴミ',       rom:'gomi',       meaning:'sampah',                  tag:'Kanji'},
     {jp:'時間', kana:'じかん',     rom:'jikan',      meaning:'waktu',                   tag:'Kanji'},
     {jp:'休日', kana:'きゅうじつ', rom:'kyuujitsu',  meaning:'hari libur',              tag:'Kanji'},
     {jp:'給料', kana:'きゅうりょう',rom:'kyuuryou',  meaning:'gaji',                    tag:'Kanji'},
@@ -1011,114 +1221,74 @@ const DEFAULT_KANJI5 = {
   ]
 };
 
-const DEFAULT_KANJI6 = {
-  id:'kanji6', title:'Kosakata Kanji — Bagian 5', desc:'Industri & perlengkapan kerja (10 kata)',
-  icon:'🏭', iconBg:'ic-amber',
+
+
+const DEFAULT_KANJI5 = {
+  id:'kanji5', title:'Kanji Tambahan 3', desc:'Pekerjaan, keluarga, alam & rumah tangga (50 kata)',
+  icon:'🏭', iconBg:'ic-purple',
   words:[
-    {jp:'機械',   kana:'きかい',     rom:'kikai',      meaning:'mesin',                    tag:'Kanji'},
-    {jp:'工場',   kana:'こうじょう', rom:'koujou',     meaning:'pabrik',                   tag:'Kanji'},
-    {jp:'商品',   kana:'しょうひん', rom:'shouhin',    meaning:'produk / barang dagangan', tag:'Kanji'},
-    {jp:'材料',   kana:'ざいりょう', rom:'zairyou',    meaning:'bahan / material',         tag:'Kanji'},
-    {jp:'道具',   kana:'どうぐ',     rom:'dougu',      meaning:'alat / perkakas',          tag:'Kanji'},
-    {jp:'部品',   kana:'ぶひん',     rom:'buhin',      meaning:'komponen / suku cadang',   tag:'Kanji'},
-    {jp:'倉庫',   kana:'そうこ',     rom:'souko',      meaning:'gudang',                   tag:'Kanji'},
-    {jp:'制服',   kana:'せいふく',   rom:'seifuku',    meaning:'seragam',                  tag:'Kanji'},
-    {jp:'手袋',   kana:'てぶくろ',   rom:'tebukuro',   meaning:'sarung tangan',            tag:'Kanji'},
-    {jp:'安全靴', kana:'あんぜんぐつ',rom:'anzengutsu',meaning:'sepatu safety',            tag:'Kanji'},
+    {jp:'機械',   kana:'きかい',       rom:'kikai',       meaning:'mesin',                   tag:'Kanji'},
+    {jp:'工場',   kana:'こうじょう',   rom:'koujou',      meaning:'pabrik',                  tag:'Kanji'},
+    {jp:'商品',   kana:'しょうひん',   rom:'shouhin',     meaning:'produk / barang',         tag:'Kanji'},
+    {jp:'材料',   kana:'ざいりょう',   rom:'zairyou',     meaning:'bahan / material',        tag:'Kanji'},
+    {jp:'道具',   kana:'どうぐ',       rom:'dougu',       meaning:'alat / perkakas',         tag:'Kanji'},
+    {jp:'部品',   kana:'ぶひん',       rom:'buhin',       meaning:'suku cadang / komponen',  tag:'Kanji'},
+    {jp:'倉庫',   kana:'そうこ',       rom:'souko',       meaning:'gudang',                  tag:'Kanji'},
+    {jp:'制服',   kana:'せいふく',     rom:'seifuku',     meaning:'seragam',                 tag:'Kanji'},
+    {jp:'手袋',   kana:'てぶくろ',     rom:'tebukuro',    meaning:'sarung tangan',           tag:'Kanji'},
+    {jp:'安全靴', kana:'あんぜんぐつ', rom:'anzengutsu',  meaning:'sepatu safety',           tag:'Kanji'},
+    {jp:'草',     kana:'くさ',         rom:'kusa',        meaning:'rumput',                  tag:'Kanji'},
+    {jp:'葉',     kana:'は',           rom:'ha',          meaning:'daun',                    tag:'Kanji'},
+    {jp:'光',     kana:'ひかり',       rom:'hikari',      meaning:'cahaya / sinar',          tag:'Kanji'},
+    {jp:'音',     kana:'おと',         rom:'oto',         meaning:'suara / bunyi',           tag:'Kanji'},
+    {jp:'夢',     kana:'ゆめ',         rom:'yume',        meaning:'mimpi',                   tag:'Kanji'},
+    {jp:'理由',   kana:'りゆう',       rom:'riyuu',       meaning:'alasan / sebab',          tag:'Kanji'},
+    {jp:'用事',   kana:'ようじ',       rom:'youji',       meaning:'urusan / keperluan',      tag:'Kanji'},
+    {jp:'約束',   kana:'やくそく',     rom:'yakusoku',    meaning:'janji',                   tag:'Kanji'},
+    {jp:'荷物',   kana:'にもつ',       rom:'nimotsu',     meaning:'barang bawaan / bagasi',  tag:'Kanji'},
+    {jp:'書類',   kana:'しょるい',     rom:'shorui',      meaning:'dokumen / surat',         tag:'Kanji'},
+    {jp:'妻',     kana:'つま',         rom:'tsuma',       meaning:'istri',                   tag:'Kanji'},
+    {jp:'主人',   kana:'しゅじん',     rom:'shujin',      meaning:'suami',                   tag:'Kanji'},
+    {jp:'息子',   kana:'むすこ',       rom:'musuko',      meaning:'putra / anak laki-laki',  tag:'Kanji'},
+    {jp:'娘',     kana:'むすめ',       rom:'musume',      meaning:'putri / anak perempuan',  tag:'Kanji'},
+    {jp:'孫',     kana:'まご',         rom:'mago',        meaning:'cucu',                    tag:'Kanji'},
+    {jp:'湖',     kana:'みずうみ',     rom:'mizuumi',     meaning:'danau',                   tag:'Kanji'},
+    {jp:'橋',     kana:'はし',         rom:'hashi',       meaning:'jembatan',                tag:'Kanji'},
+    {jp:'島',     kana:'しま',         rom:'shima',       meaning:'pulau',                   tag:'Kanji'},
+    {jp:'森',     kana:'もり',         rom:'mori',        meaning:'hutan',                   tag:'Kanji'},
+    {jp:'港',     kana:'みなと',       rom:'minato',      meaning:'pelabuhan',               tag:'Kanji'},
+    {jp:'財布',   kana:'さいふ',       rom:'saifu',       meaning:'dompet',                  tag:'Kanji'},
+    {jp:'鍵',     kana:'かぎ',         rom:'kagi',        meaning:'kunci',                   tag:'Kanji'},
+    {jp:'傘',     kana:'かさ',         rom:'kasa',        meaning:'payung',                  tag:'Kanji'},
+    {jp:'毛布',   kana:'もうふ',       rom:'moufu',       meaning:'selimut',                 tag:'Kanji'},
+    {jp:'布団',   kana:'ふとん',       rom:'futon',       meaning:'kasur lipat / futon',     tag:'Kanji'},
+    {jp:'冷蔵庫', kana:'れいぞうこ',   rom:'reizouko',    meaning:'kulkas',                  tag:'Kanji'},
+    {jp:'洗濯機', kana:'せんたくき',   rom:'sentakuki',   meaning:'mesin cuci',              tag:'Kanji'},
+    {jp:'電子レンジ',kana:'でんしれんじ',rom:'denshi renji',meaning:'microwave',             tag:'Kanji'},
+    {jp:'本棚',   kana:'ほんだな',     rom:'hondana',     meaning:'rak buku',                tag:'Kanji'},
+    {jp:'薬',     kana:'くすり',       rom:'kusuri',      meaning:'obat',                    tag:'Kanji'},
+    {jp:'畳',     kana:'たたみ',       rom:'tatami',      meaning:'tatami (lantai Jepang)',  tag:'Kanji'},
+    {jp:'靴',     kana:'くつ',         rom:'kutsu',       meaning:'sepatu',                  tag:'Kanji'},
+    {jp:'箱',     kana:'はこ',         rom:'hako',        meaning:'kotak / dus',             tag:'Kanji'},
+    {jp:'鏡',     kana:'かがみ',       rom:'kagami',      meaning:'cermin',                  tag:'Kanji'},
+    {jp:'机',     kana:'つくえ',       rom:'tsukue',      meaning:'meja belajar',            tag:'Kanji'},
+    {jp:'椅子',   kana:'いす',         rom:'isu',         meaning:'kursi',                   tag:'Kanji'},
+    {jp:'壁',     kana:'かべ',         rom:'kabe',        meaning:'dinding',                 tag:'Kanji'},
+    {jp:'天井',   kana:'てんじょう',   rom:'tenjou',      meaning:'langit-langit / plafon',  tag:'Kanji'},
+    {jp:'床',     kana:'ゆか',         rom:'yuka',        meaning:'lantai',                  tag:'Kanji'},
+    {jp:'引き出し',kana:'ひきだし',    rom:'hikidashi',   meaning:'laci',                    tag:'Kanji'},
   ]
 };
 
-const DEFAULT_KANJI7 = {
-  id:'kanji7', title:'Kosakata Kanji — Bagian 6', desc:'Alam & hal abstrak (10 kata)',
-  icon:'🍀', iconBg:'ic-blue',
-  words:[
-    {jp:'草',   kana:'くさ',   rom:'kusa',     meaning:'rumput',               tag:'Kanji'},
-    {jp:'葉',   kana:'は',     rom:'ha',       meaning:'daun',                 tag:'Kanji'},
-    {jp:'光',   kana:'ひかり', rom:'hikari',   meaning:'cahaya',               tag:'Kanji'},
-    {jp:'音',   kana:'おと',   rom:'oto',      meaning:'suara',                tag:'Kanji'},
-    {jp:'夢',   kana:'ゆめ',   rom:'yume',     meaning:'mimpi',                tag:'Kanji'},
-    {jp:'理由', kana:'りゆう', rom:'riyuu',    meaning:'alasan',               tag:'Kanji'},
-    {jp:'用事', kana:'ようじ', rom:'youji',    meaning:'urusan / keperluan',   tag:'Kanji'},
-    {jp:'約束', kana:'やくそく',rom:'yakusoku',meaning:'janji',                tag:'Kanji'},
-    {jp:'荷物', kana:'にもつ', rom:'nimotsu',  meaning:'barang bawaan',        tag:'Kanji'},
-    {jp:'書類', kana:'しょるい',rom:'shorui',  meaning:'dokumen',              tag:'Kanji'},
-  ]
-};
-
-const DEFAULT_KANJI8 = {
-  id:'kanji8', title:'Kosakata Kanji — Bagian 7', desc:'Keluarga & geografi (10 kata)',
-  icon:'👪', iconBg:'ic-green',
-  words:[
-    {jp:'妻', kana:'つま',     rom:'tsuma',    meaning:'istri',           tag:'Kanji'},
-    {jp:'主人', kana:'しゅじん', rom:'shujin',   meaning:'suami',           tag:'Kanji'},
-    {jp:'息子', kana:'むすこ',   rom:'musuko',   meaning:'anak laki-laki',  tag:'Kanji'},
-    {jp:'娘',   kana:'むすめ',   rom:'musume',   meaning:'anak perempuan',  tag:'Kanji'},
-    {jp:'孫',   kana:'まご',     rom:'mago',     meaning:'cucu',            tag:'Kanji'},
-    {jp:'湖',   kana:'みずうみ', rom:'mizuumi',  meaning:'danau',           tag:'Kanji'},
-    {jp:'橋',   kana:'はし',     rom:'hashi',    meaning:'jembatan',        tag:'Kanji'},
-    {jp:'島',   kana:'しま',     rom:'shima',    meaning:'pulau',           tag:'Kanji'},
-    {jp:'森',   kana:'もり',     rom:'mori',     meaning:'hutan',           tag:'Kanji'},
-    {jp:'港',   kana:'みなと',   rom:'minato',   meaning:'pelabuhan',       tag:'Kanji'},
-  ]
-};
-
-const DEFAULT_KANJI9 = {
-  id:'kanji9', title:'Kosakata Kanji — Bagian 8', desc:'Barang & elektronik rumah (10 kata)',
-  icon:'🏠', iconBg:'ic-purple',
-  words:[
-    {jp:'財布',     kana:'さいふ',     rom:'saifu',       meaning:'dompet',               tag:'Kanji'},
-    {jp:'鍵',       kana:'かぎ',       rom:'kagi',        meaning:'kunci',                tag:'Kanji'},
-    {jp:'傘',       kana:'かさ',       rom:'kasa',        meaning:'payung',               tag:'Kanji'},
-    {jp:'毛布',     kana:'もうふ',     rom:'moufu',       meaning:'selimut',              tag:'Kanji'},
-    {jp:'布団',     kana:'ふとん',     rom:'futon',       meaning:'futon / kasur lipat',  tag:'Kanji'},
-    {jp:'冷蔵庫',   kana:'れいぞうこ', rom:'reizouko',    meaning:'kulkas',               tag:'Kanji'},
-    {jp:'洗濯機',   kana:'せんたくき', rom:'sentakuki',   meaning:'mesin cuci',           tag:'Kanji'},
-    {jp:'電子レンジ',kana:'でんしれんじ',rom:'denshirenji',meaning:'microwave',           tag:'Kanji'},
-    {jp:'本棚',     kana:'ほんだな',   rom:'hondana',     meaning:'rak buku',             tag:'Kanji'},
-    {jp:'薬',       kana:'くすり',     rom:'kusuri',      meaning:'obat',                 tag:'Kanji'},
-  ]
-};
-
-const DEFAULT_KANJI10 = {
-  id:'kanji10', title:'Kosakata Kanji — Bagian 9', desc:'Perabotan ruangan (10 kata)',
-  icon:'🪑', iconBg:'ic-red',
-  words:[
-    {jp:'畳',     kana:'たたみ',   rom:'tatami',   meaning:'tatami (tikar jerami)', tag:'Kanji'},
-    {jp:'靴',     kana:'くつ',     rom:'kutsu',    meaning:'sepatu',                tag:'Kanji'},
-    {jp:'箱',     kana:'はこ',     rom:'hako',     meaning:'kotak',                 tag:'Kanji'},
-    {jp:'鏡',     kana:'かがみ',   rom:'kagami',   meaning:'cermin',                tag:'Kanji'},
-    {jp:'机',     kana:'つくえ',   rom:'tsukue',   meaning:'meja',                  tag:'Kanji'},
-    {jp:'椅子',   kana:'いす',     rom:'isu',      meaning:'kursi',                 tag:'Kanji'},
-    {jp:'壁',     kana:'かべ',     rom:'kabe',     meaning:'dinding',               tag:'Kanji'},
-    {jp:'天井',   kana:'てんじょう',rom:'tenjou',  meaning:'langit-langit / plafon',tag:'Kanji'},
-    {jp:'床',     kana:'ゆか',     rom:'yuka',     meaning:'lantai',                tag:'Kanji'},
-    {jp:'引き出し',kana:'ひきだし', rom:'hikidashi',meaning:'laci',                 tag:'Kanji'},
-  ]
-};
-
-let customQuizzes=[];
 let currentSession=null;
 let returnScreen='homeScreen';
 let qOrder=[], qIdx=0, qCorrect=0, qWrong=0, qAnswered=false, qResults=[], qFirstAttempt=new Set();
-let editingId=null, wordCount=0;
 
 /* flashcard state */
 let fcWords=[], fcIdx=0, fcFlipped=false;
 
-/* ── STORAGE ── */
-function loadCustom(){
-  try{
-    const r=localStorage.getItem('nihongo_v3');
-    let arr=r?JSON.parse(r):[];
-    arr=arr.filter(s=>s.id!=='s1'&&s.id!=='verb_g1_p1'&&s.id!=='verb_g1_p2'&&s.id!=='verb_g1_p3'&&s.id!=='verb_g1_p4'&&s.id!=='verb_g1_p5'&&s.id!=='verb_g2_p1'&&s.id!=='verb_g2_p2'&&s.id!=='verb_g2_p3'&&s.id!=='verb_g3_p1'&&s.id!=='verb_g3_p2'&&s.id!=='kanji1'&&s.id!=='kanji2'&&s.id!=='kanji3'&&s.id!=='kanji4'&&s.id!=='kanji5'&&s.id!=='kanji6'&&s.id!=='kanji7'&&s.id!=='kanji8'&&s.id!=='kanji9'&&s.id!=='kanji10');
-    customQuizzes=arr;
-  }catch(e){ customQuizzes=[]; }
-}
-function saveCustom(){ try{localStorage.setItem('nihongo_v3',JSON.stringify(customQuizzes));}catch(e){} }
-
 function getAllSets(){
-  loadCustom();
-  return [DEFAULT_VERB_G1_P1,DEFAULT_VERB_G1_P2,DEFAULT_VERB_G1_P3,DEFAULT_VERB_G1_P4,DEFAULT_VERB_G1_P5,DEFAULT_VERB_G2_P1,DEFAULT_VERB_G2_P2,DEFAULT_VERB_G2_P3,DEFAULT_VERB_G3_P1,DEFAULT_VERB_G3_P2,DEFAULT_KANJI1,DEFAULT_KANJI2,DEFAULT_KANJI3,DEFAULT_KANJI4,DEFAULT_KANJI5,DEFAULT_KANJI6,DEFAULT_KANJI7,DEFAULT_KANJI8,DEFAULT_KANJI9,DEFAULT_KANJI10,...customQuizzes];
+  return [VERB_G1_P1,VERB_G1_P2,VERB_G2_P1,DEFAULT_KANJI1,DEFAULT_KANJI3,DEFAULT_KANJI5];
 }
 
 /* ══════════════════════════════════
@@ -1167,7 +1337,6 @@ function goHome(){ showScreen('homeScreen'); renderHome(); }
 /* ══════════════════════════════════
    FLASHCARD LIST + PLAY
 ══════════════════════════════════ */
-function isCustomSet(s){ return s.id!=='verb_g1_p1'&&s.id!=='verb_g1_p2'&&s.id!=='verb_g1_p3'&&s.id!=='verb_g1_p4'&&s.id!=='verb_g1_p5'&&s.id!=='verb_g2_p1'&&s.id!=='verb_g2_p2'&&s.id!=='verb_g2_p3'&&s.id!=='verb_g3_p1'&&s.id!=='verb_g3_p2'&&s.id!=='kanji1'&&s.id!=='kanji2'&&s.id!=='kanji3'&&s.id!=='kanji4'&&s.id!=='kanji5'&&s.id!=='kanji6'&&s.id!=='kanji7'&&s.id!=='kanji8'&&s.id!=='kanji9'&&s.id!=='kanji10'; }
 function getBuiltinBest(id){
   try{ const v=localStorage.getItem('nihongo_best_'+id); return v!==null?parseInt(v):null; }catch(e){ return null; }
 }
@@ -1191,7 +1360,6 @@ function renderFlashcardList(){
   const sets=getAllSets().filter(s=>s.id!=='verb_g1_p1'&&s.id!=='verb_g1_p2'&&s.id!=='verb_g1_p3'&&s.id!=='verb_g1_p4'&&s.id!=='verb_g1_p5'&&s.id!=='verb_g2_p1'&&s.id!=='verb_g2_p2'&&s.id!=='verb_g2_p3'&&s.id!=='verb_g3_p1'&&s.id!=='verb_g3_p2');
   const list=document.getElementById('flashcardList');
   list.innerHTML=sets.map(s=>{
-    const customBadge=isCustomSet(s)?'<span class="sc-badge badge-custom">Custom</span>':'';
     return `
     <div class="session-card">
       <div class="sc-top">
@@ -1200,7 +1368,7 @@ function renderFlashcardList(){
           <div class="sc-title">${s.title}</div>
           <div class="sc-meta">${s.words.length} kanji · ${s.desc||''}</div>
         </div>
-        <div class="sc-badges">${customBadge}</div>
+        <div class="sc-badges"></div>
       </div>
       <div class="sc-actions">
         <button class="sc-play-btn" onclick="openKanjiDetail('${s.id}')">▶ Mulai Belajar</button>
@@ -1222,12 +1390,52 @@ function openKanjiDetail(id){
       <div class="kd-item-divider"></div>
       <div class="kd-item-meaning">${w.meaning}</div>
     </div>`).join('');
+
+  const n = currentKanjiSet.words.length;
+  const hasSplit = n === 30 || n === 50;
+  const mid = n === 50 ? 25 : 15;
+  const submenu = document.getElementById('kdSubmenu');
+  if(hasSplit){
+    submenu.style.gridTemplateColumns = '1fr 1fr 1fr';
+    submenu.innerHTML = `
+      <button class="kd-sub-btn sb-flash" onclick="startFlashcardSlice(0,${mid})">
+        <div class="kd-sub-icon">🗂️</div>
+        <div class="kd-sub-label">Flashcard<br>Part 1</div>
+      </button>
+      <button class="kd-sub-btn sb-flash" onclick="startFlashcardSlice(${mid},${n})">
+        <div class="kd-sub-icon">🗂️</div>
+        <div class="kd-sub-label">Flashcard<br>Part 2</div>
+      </button>
+      <button class="kd-sub-btn sb-quiz" onclick="startQuizFromDetail()">
+        <div class="kd-sub-icon">📝</div>
+        <div class="kd-sub-label">Quiz</div>
+      </button>`;
+  } else {
+    submenu.style.gridTemplateColumns = '';
+    submenu.innerHTML = `
+      <button class="kd-sub-btn sb-flash" onclick="startFlashcardFromDetail()">
+        <div class="kd-sub-icon">🗂️</div>
+        <div class="kd-sub-label">Flashcard</div>
+      </button>
+      <button class="kd-sub-btn sb-quiz" onclick="startQuizFromDetail()">
+        <div class="kd-sub-icon">📝</div>
+        <div class="kd-sub-label">Quiz</div>
+      </button>`;
+  }
+
   showScreen('kanjiDetailScreen');
 }
 
 function startFlashcardFromDetail(){
   if(!currentKanjiSet) return;
   startFlashcard(currentKanjiSet.id);
+}
+function startFlashcardSlice(from, to){
+  if(!currentKanjiSet) return;
+  fcWords=shuffle(currentKanjiSet.words.slice(from, to));
+  fcIdx=0; fcFlipped=false;
+  showScreen('flashcardScreen');
+  renderFlashcard();
 }
 function startQuizFromDetail(){
   if(!currentKanjiSet) return;
@@ -1277,17 +1485,13 @@ function goQuizList(){
   renderQuizList();
 }
 function renderQuizList(){
-  const sets=getAllSets().filter(s=>s.id==='verb_g1_p1'||s.id==='verb_g1_p2'||s.id==='verb_g1_p3'||s.id==='verb_g1_p4'||s.id==='verb_g1_p5'||s.id==='verb_g2_p1'||s.id==='verb_g2_p2'||s.id==='verb_g2_p3'||s.id==='verb_g3_p1'||s.id==='verb_g3_p2'||isCustomSet(s));
+  const sets=getAllSets().filter(s=>s.id==='verb_g1_p1'||s.id==='verb_g1_p2'||s.id==='verb_g2_p1');
   const list=document.getElementById('quizList');
+  if(!sets.length){
+    list.innerHTML='<div class="empty-state"><div class="es-icon">📭</div><p>Belum ada materi kosakata.</p></div>';
+    return;
+  }
   list.innerHTML=sets.map(s=>{
-    let bestScore=null;
-    if(isCustomSet(s)){ bestScore=s.bestScore; }
-    else { bestScore=getBuiltinBest(s.id); }
-    const pct=bestScore!==null?bestScore:0;
-    const statusBadge=bestScore===null
-      ? '<span class="sc-badge badge-new">Belum</span>'
-      : (bestScore>=70?'<span class="sc-badge badge-done">✓ Selesai</span>':'<span class="sc-badge badge-new">Coba lagi</span>');
-    const customBadge=isCustomSet(s)?'<span class="sc-badge badge-custom">Custom</span>':'';
     return `
     <div class="session-card">
       <div class="sc-top">
@@ -1296,7 +1500,6 @@ function renderQuizList(){
           <div class="sc-title">${s.title}</div>
           <div class="sc-meta">${s.words.length} kosakata · ${s.desc||''}</div>
         </div>
-        <div class="sc-badges">${customBadge}</div>
       </div>
       <div class="sc-actions">
         <button class="sc-play-btn" onclick="startQuizFromList('${s.id}')">▶ Mulai Quiz</button>
@@ -1311,51 +1514,6 @@ function startQuizFromList(id){
 }
 
 /* ══════════════════════════════════
-   QUIZ CUSTOM LIST
-══════════════════════════════════ */
-function goQuizCustom(){
-  showScreen('quizCustomScreen');
-  renderCustomQuizList();
-}
-function renderCustomQuizList(){
-  loadCustom();
-  const list=document.getElementById('customQuizList');
-  if(!customQuizzes.length){
-    list.innerHTML='<div class="empty-state"><div class="es-icon">📭</div><p>Belum ada quiz custom.<br>Tambahkan quiz pertamamu!</p></div>';
-    return;
-  }
-  list.innerHTML=customQuizzes.map(s=>{
-    const pct=s.bestScore!==null?s.bestScore:0;
-    const statusBadge=s.bestScore===null
-      ? '<span class="sc-badge badge-new">Belum</span>'
-      : (s.bestScore>=70?'<span class="sc-badge badge-done">✓ Selesai</span>':'<span class="sc-badge badge-new">Coba lagi</span>');
-    return `
-    <div class="session-card">
-      <div class="sc-top">
-        <div class="sc-icon ${s.iconBg}">${s.icon}</div>
-        <div class="sc-info">
-          <div class="sc-title">${s.title}</div>
-          <div class="sc-meta">${s.words.length} kosakata · ${s.desc||''}</div>
-        </div>
-        <div class="sc-badges">${statusBadge}</div>
-      </div>
-      <div class="sc-progress">
-        <div class="sc-prog-row">
-          <span class="sc-prog-label">Skor terbaik</span>
-          <span class="sc-prog-val">${s.bestScore!==null?s.bestScore+'%':'—'}</span>
-        </div>
-        <div class="sc-prog-track"><div class="sc-prog-fill" style="width:${pct}%"></div></div>
-      </div>
-      <div class="sc-actions">
-        <button class="sc-play-btn" onclick="playCustomQuiz('${s.id}')">▶ Mulai Quiz</button>
-        <button class="sc-edit-btn" onclick="event.stopPropagation();openEditModal('${s.id}')">✎ Edit</button>
-        <button class="sc-del-btn" onclick="event.stopPropagation();deleteSession('${s.id}')">🗑</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-/* ══════════════════════════════════
    QUIZ PLAY
 ══════════════════════════════════ */
 function shuffle(arr){
@@ -1367,12 +1525,6 @@ function shuffle(arr){
   return a;
 }
 
-function playCustomQuiz(id){
-  loadCustom();
-  const q=customQuizzes.find(x=>x.id===id);
-  if(!q) return;
-  startQuiz(q,'quizCustomScreen');
-}
 function startQuiz(quizObj,retTo){
   currentSession=quizObj;
   returnScreen=retTo;
@@ -1398,7 +1550,7 @@ function renderQ(){
   const fcJpEl=document.getElementById('fcJp');
   fcJpEl.textContent=w.jp;
   const jpLen=w.jp.length;
-  fcJpEl.className='fc-jp'+(jpLen>=6?' len-lg':jpLen>=4?' len-md':'');
+  fcJpEl.className='fc-jp'+(jpLen>=5?' len-lg':jpLen>=4?' len-md':'');
   fcKanaEl.textContent=isKanjiTag?'':(w.kana||'');
   fcKanaEl.style.display=isKanjiTag?'none':'';
   document.getElementById('hintPill').textContent='📚 '+(currentSession.desc||currentSession.title);
@@ -1468,17 +1620,7 @@ function nextQ(){
 function showScore(){
   const pct=Math.round(qCorrect/currentSession.words.length*100);
 
-  if(!isCustomSet(currentSession)){
-    setBuiltinBest(currentSession.id,pct);
-  } else {
-    loadCustom();
-    const idx=customQuizzes.findIndex(s=>s.id===currentSession.id);
-    if(idx>=0){
-      customQuizzes[idx].plays=(customQuizzes[idx].plays||0)+1;
-      if(customQuizzes[idx].bestScore===null||pct>customQuizzes[idx].bestScore) customQuizzes[idx].bestScore=pct;
-      saveCustom();
-    }
-  }
+  setBuiltinBest(currentSession.id,pct);
 
   let emoji='😢',title='Masih harus belajar lagi!';
   if(pct>=90){emoji='🏆';title='Sempurna! Luar biasa!';}
@@ -1497,120 +1639,67 @@ function retryQuiz(){ startQuiz(currentSession,returnScreen); }
 
 function goBack(){
   showScreen(returnScreen);
-  if(returnScreen==='quizCustomScreen') renderCustomQuizList();
-  else if(returnScreen==='quizListScreen') renderQuizList();
+  if(returnScreen==='quizListScreen') renderQuizList();
   else if(returnScreen==='kanjiDetailScreen') {} // already showing
   else renderHome();
 }
 
-/* ══════════════════════════════════
-   MODAL ADD / EDIT (CUSTOM QUIZ)
-══════════════════════════════════ */
-const ICONS=['📗','🌸','⭐','🔥','🎯','🧠','🦊','🐼','🎌','📖'];
-const BGS=['ic-red','ic-blue','ic-green','ic-amber','ic-purple'];
+/* ── NAV — Hash Routing ── */
+// Peta hash → fungsi render
+var _hashMap = {
+  'home':           function(){ _showDirect('homeScreen');         renderHome(); },
+  'hiragana':       function(){ _showDirect('hiraganaScreen');     renderKanaScreen(HIRAGANA_ROWS,'hiraganaGrid'); },
+  'katakana':       function(){ _showDirect('katakanaScreen');     renderKanaScreen(KATAKANA_ROWS,'katakanaGrid'); },
+  'kanji':          function(){ _showDirect('flashcardListScreen');renderFlashcardList(); },
+  'kanjiDetail':    function(){ _showDirect('kanjiDetailScreen'); },
+  'flashcard':      function(){ _showDirect('flashcardScreen'); },
+  'quizList':       function(){ _showDirect('quizListScreen');     renderQuizList(); },
+  'quiz':           function(){ _showDirect('quizScreen'); },
+  'score':          function(){ _showDirect('scoreScreen'); },
+  'kanaQuiz':       function(){ _showDirect('kanaQuizScreen'); },
+  'kanaScore':      function(){ _showDirect('kanaScoreScreen'); }
+};
 
-function openAddModal(){
-  editingId=null; wordCount=0;
-  document.getElementById('modalTitle').textContent='Tambah Quiz Baru';
-  document.getElementById('fTitle').value='';
-  document.getElementById('fDesc').value='';
-  document.getElementById('wordEntries').innerHTML='';
-  document.getElementById('errTitle').classList.remove('show');
-  document.getElementById('errWords').classList.remove('show');
-  for(let i=0;i<4;i++) addWordEntry();
-  document.getElementById('modalOverlay').classList.add('open');
-}
+// Mapping screen ID → hash key
+var _screenToHash = {
+  'homeScreen':          'home',
+  'hiraganaScreen':      'hiragana',
+  'katakanaScreen':      'katakana',
+  'flashcardListScreen': 'kanji',
+  'kanjiDetailScreen':   'kanjiDetail',
+  'flashcardScreen':     'flashcard',
+  'quizListScreen':      'quizList',
+  'quizScreen':          'quiz',
+  'scoreScreen':         'score',
+  'kanaQuizScreen':      'kanaQuiz',
+  'kanaScoreScreen':     'kanaScore'
+};
 
-function openEditModal(id){
-  loadCustom();
-  const s=customQuizzes.find(x=>x.id===id);
-  if(!s) return;
-  editingId=id; wordCount=0;
-  document.getElementById('modalTitle').textContent='Edit Quiz';
-  document.getElementById('fTitle').value=s.title;
-  document.getElementById('fDesc').value=s.desc||'';
-  document.getElementById('wordEntries').innerHTML='';
-  document.getElementById('errTitle').classList.remove('show');
-  document.getElementById('errWords').classList.remove('show');
-  s.words.forEach(w=>addWordEntry(w));
-  document.getElementById('modalOverlay').classList.add('open');
-}
-
-function addWordEntry(data){
-  wordCount++;
-  const n=wordCount;
-  const safe=v=>(v||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  const div=document.createElement('div');
-  div.className='word-entry'; div.id='we_'+n;
-  div.innerHTML=`
-    <div class="word-entry-head">
-      <span class="word-entry-num">Kata #${n}</span>
-      <button class="word-del" onclick="removeWordEntry('we_${n}')">✕</button>
-    </div>
-    <div class="word-grid">
-      <div class="form-group"><label class="form-label">Kanji / Kata JP</label>
-        <input class="form-input jp" placeholder="食べます" value="${safe(data&&data.jp)}" id="wjp_${n}"></div>
-      <div class="form-group"><label class="form-label">Kana (opsional)</label>
-        <input class="form-input jp" placeholder="たべます" value="${safe(data&&data.kana)}" id="wkana_${n}"></div>
-      <div class="form-group"><label class="form-label">Romaji (opsional)</label>
-        <input class="form-input" placeholder="tabemasu" value="${safe(data&&data.rom)}" id="wrom_${n}"></div>
-      <div class="form-group"><label class="form-label">Arti (jawaban benar)</label>
-        <input class="form-input" placeholder="makan" value="${safe(data&&data.meaning)}" id="wmean_${n}"></div>
-    </div>`;
-  document.getElementById('wordEntries').appendChild(div);
-}
-
-function removeWordEntry(id){ const el=document.getElementById(id); if(el) el.remove(); }
-
-function saveSession(){
-  const title=document.getElementById('fTitle').value.trim();
-  const desc=document.getElementById('fDesc').value.trim();
-  document.getElementById('errTitle').classList.toggle('show',!title);
-  if(!title) return;
-
-  const entries=document.querySelectorAll('.word-entry');
-  const words=[]; let hasIncomplete=false;
-  entries.forEach(entry=>{
-    const id=entry.id.replace('we_','');
-    const get=k=>document.getElementById(k+id)?.value.trim()||'';
-    const jp=get('wjp_'),kana=get('wkana_'),rom=get('wrom_'),meaning=get('wmean_');
-    if(jp&&meaning){
-      words.push({jp,kana,rom,meaning,tag:'Kosakata'});
-    } else if(jp||meaning){ hasIncomplete=true; }
-  });
-
-  const errW=document.getElementById('errWords');
-  if(words.length<4){ errW.textContent='Minimal 4 kata harus diisi (kanji dan arti), karena pilihan jawaban salah diambil acak dari kata-kata lain.'; errW.classList.add('show'); return; }
-  if(hasIncomplete){ errW.textContent='Ada kata yang belum lengkap. Periksa kembali kanji dan arti tiap kata.'; errW.classList.add('show'); return; }
-  errW.classList.remove('show');
-
-  loadCustom();
-  if(editingId){
-    const idx=customQuizzes.findIndex(s=>s.id===editingId);
-    if(idx>=0){ customQuizzes[idx].title=title; customQuizzes[idx].desc=desc; customQuizzes[idx].words=words; }
-  } else {
-    const i=customQuizzes.length;
-    customQuizzes.push({id:'c_'+Date.now(),title,desc,icon:ICONS[i%ICONS.length],iconBg:BGS[i%BGS.length],bestScore:null,plays:0,words});
-  }
-  saveCustom(); closeModalDirect(); renderCustomQuizList();
-}
-
-function deleteSession(id){
-  if(!confirm('Hapus quiz ini? Data tidak bisa dikembalikan.')) return;
-  loadCustom(); customQuizzes=customQuizzes.filter(s=>s.id!==id); saveCustom(); renderCustomQuizList();
-}
-
-function closeModalBg(e){ if(e.target===document.getElementById('modalOverlay')) closeModalDirect(); }
-function closeModalDirect(){ document.getElementById('modalOverlay').classList.remove('open'); }
-
-/* ── NAV ── */
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+function _showDirect(id){
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
+
+function showScreen(id, skipHistory){
+  _showDirect(id);
+  if(!skipHistory){
+    var hash = _screenToHash[id] || 'home';
+    location.hash = hash;           // Browser otomatis push ke history
+  }
+}
+
+// Saat hash berubah (tombol back / forward browser)
+window.addEventListener('hashchange', function(){
+  var hash = location.hash.replace('#','') || 'home';
+  var fn = _hashMap[hash];
+  if(fn) fn();
+  else { _showDirect('homeScreen'); renderHome(); }
+});
 
 /* ── INIT ── */
+// Set hash awal ke #home supaya selalu ada entry di history
+location.hash = 'home';
 renderHome();
 </script>
 </body>
