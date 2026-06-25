@@ -193,6 +193,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 .fc-jp{font-family:'Noto Sans JP',sans-serif;font-size:clamp(48px, 18vw, 72px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:6px;word-break:break-all;overflow-wrap:break-word}
 .fc-jp.len-md{font-size:clamp(36px, 14vw, 58px)}
 .fc-jp.len-lg{font-size:clamp(28px, 10vw, 44px)}
+.fc-jp.qz-jp{font-size:clamp(22px, 7vw, 32px);line-height:1.35;color:var(--muted)}
 .fc-kana{font-family:'Noto Sans JP',sans-serif;font-size:44px;font-weight:700;color:#ffffff;margin-bottom:4px;line-height:1.2;word-break:break-all}
 .fc-q{font-size:15px;font-weight:800;color:#fff;margin-top:10px}
 .hint-pill-wrap{display:flex;justify-content:center;margin-bottom:10px}
@@ -300,7 +301,10 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 .kd-item:nth-child(5n+3) .kd-item-kana{color:#B49AFF}
 .kd-item:nth-child(5n+4) .kd-item-kana{color:#FFAA5C}
 .kd-item:nth-child(5n+5) .kd-item-kana{color:#5EEAD4}
-.kd-item-jp{font-family:'Noto Sans JP',sans-serif;font-size:56px;font-weight:700;color:#fff;line-height:1;margin-bottom:8px;text-shadow:0 2px 12px rgba(255,255,255,0.1)}
+.kd-item-jp{font-family:'Noto Sans JP',sans-serif;font-size:56px;font-weight:700;color:#fff;line-height:1.05;margin-bottom:8px;text-shadow:0 2px 12px rgba(255,255,255,0.1);word-break:keep-all;overflow-wrap:break-word}
+.kd-item-jp.kd-len-2{font-size:46px}
+.kd-item-jp.kd-len-3{font-size:36px}
+.kd-item-jp.kd-len-4{font-size:28px}
 .kd-item-kana{font-family:'Noto Sans JP',sans-serif;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1px}
 .kd-item-rom{font-size:10px;color:rgba(255,255,255,0.35);font-weight:700;margin-bottom:8px}
 .kd-item-divider{height:1px;background:rgba(255,255,255,0.08);margin:0 0 8px}
@@ -386,6 +390,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 
   .word-grid { grid-template-columns: 1fr 1fr; }
   .fc-jp { font-size: clamp(64px, 14vw, 90px); }
+  .fc-jp.qz-jp { font-size: clamp(24px, 4.5vw, 34px); }
   .flip-inner { height: 440px; }
 }
 
@@ -506,6 +511,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
 
   .flip-inner { height: 480px; }
   .fc-jp { font-size: clamp(44px, 5vw, 72px); }
+  .fc-jp.qz-jp { font-size: clamp(24px, 2.2vw, 32px); }
 }
 </style>
 </head>
@@ -690,7 +696,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;color
       <div class="fc-tag" id="fcTag"></div>
       <div class="fc-rom" id="fcRom"></div>
       <div class="fc-kana" id="fcKana"></div>
-      <div class="fc-jp" id="fcJp"></div>
+      <div class="fc-jp qz-jp" id="fcJp"></div>
       <div class="fc-q">Artinya apa?</div>
     </div>
     <div class="hint-pill-wrap"><div class="hint-pill" id="hintPill"></div></div>
@@ -1382,14 +1388,17 @@ function openKanjiDetail(id){
   if(!currentKanjiSet) return;
   document.getElementById('kdTitle').textContent=currentKanjiSet.title;
   document.getElementById('kdCount').textContent=currentKanjiSet.words.length+' kanji';
-  document.getElementById('kdGrid').innerHTML=currentKanjiSet.words.map(w=>`
+  document.getElementById('kdGrid').innerHTML=currentKanjiSet.words.map(w=>{
+    const len=(w.jp||'').length;
+    const lenClass = len>=4?' kd-len-4':len===3?' kd-len-3':len===2?' kd-len-2':'';
+    return `
     <div class="kd-item">
-      <div class="kd-item-jp">${w.jp}</div>
+      <div class="kd-item-jp${lenClass}">${w.jp}</div>
       ${w.kana?`<div class="kd-item-kana">${w.kana}</div>`:''}
       ${w.rom?`<div class="kd-item-rom">${w.rom}</div>`:''}
       <div class="kd-item-divider"></div>
       <div class="kd-item-meaning">${w.meaning}</div>
-    </div>`).join('');
+    </div>`;}).join('');
 
   const n = currentKanjiSet.words.length;
   const hasSplit = n === 30 || n === 50;
@@ -1550,7 +1559,7 @@ function renderQ(){
   const fcJpEl=document.getElementById('fcJp');
   fcJpEl.textContent=w.jp;
   const jpLen=w.jp.length;
-  fcJpEl.className='fc-jp'+(jpLen>=5?' len-lg':jpLen>=4?' len-md':'');
+  fcJpEl.className='fc-jp qz-jp'+(jpLen>=5?' len-lg':jpLen>=4?' len-md':'');
   fcKanaEl.textContent=isKanjiTag?'':(w.kana||'');
   fcKanaEl.style.display=isKanjiTag?'none':'';
   document.getElementById('hintPill').textContent='📚 '+(currentSession.desc||currentSession.title);
