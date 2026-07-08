@@ -757,6 +757,10 @@ div[onclick]{-webkit-user-select:none;outline:none}
       <button class="back-btn" onclick="goHome()">←</button>
       <h2>Kanji</h2>
     </div>
+    <div class="quiz-tabs" id="kanjiTabs">
+      <button class="quiz-tab active" data-tab="bab" onclick="switchKanjiTab('bab')">1</button>
+      <button class="quiz-tab" data-tab="tambahan" onclick="switchKanjiTab('tambahan')">2</button>
+    </div>
     <div class="session-list" id="flashcardList"></div>
   </div>
 </div>
@@ -1580,7 +1584,7 @@ const JIDOUSHI_1 = {
 };
 
 const DEFAULT_KANJI1 = {
-  id:'kanji1', title:'Kanji Tambahan 1', desc:'Makanan, hiburan, pakaian & tempat (30 kata)',
+  id:'kanji1', title:'Kanji 1', desc:'Makanan, hiburan, pakaian & tempat (30 kata)',
   icon:'🏪', iconBg:'ic-amber',
   words:[
     {jp:'お金',     kana:'おかね',        rom:'okane',        meaning:'uang',            tag:'Kanji'},
@@ -1617,7 +1621,7 @@ const DEFAULT_KANJI1 = {
 };
 
 const DEFAULT_KANJI3 = {
-  id:'kanji3', title:'Kanji Tambahan 2', desc:'Alam, hewan & kehidupan sehari-hari (30 kata)',
+  id:'kanji3', title:'Kanji 2', desc:'Alam, hewan & kehidupan sehari-hari (30 kata)',
   icon:'🌄', iconBg:'ic-green',
   words:[
     {jp:'太陽', kana:'たいよう',   rom:'taiyou',    meaning:'matahari',                tag:'Kanji'},
@@ -1655,8 +1659,51 @@ const DEFAULT_KANJI3 = {
 
 
 
+const DEFAULT_KANJI_TAMBAHAN1 = {
+  id:'kanji_tambahan1', title:'Kanji Tambahan 1', desc:'Kosakata Pelajaran 30 - kegiatan, ruangan & bacaan (34 kata)',
+  icon:'📮', iconBg:'ic-red',
+  words:[
+    {jp:'掛けます',       kana:'かけます',       rom:'kakemasu',        meaning:'menggantungkan',           tag:'Kanji'},
+    {jp:'飾ります',       kana:'かざります',     rom:'kazarimasu',      meaning:'menghiasi',                tag:'Kanji'},
+    {jp:'並べます',       kana:'ならべます',     rom:'narabemasu',      meaning:'menata',                   tag:'Kanji'},
+    {jp:'植えます',       kana:'うえます',       rom:'uemasu',          meaning:'menanam',                  tag:'Kanji'},
+    {jp:'戻します',       kana:'もどします',     rom:'modoshimasu',     meaning:'mengembalikan',            tag:'Kanji'},
+    {jp:'決めます',       kana:'きめます',       rom:'kimemasu',        meaning:'menentukan',               tag:'Kanji'},
+    {jp:'予習します',     kana:'よしゅうします', rom:'yoshuu shimasu',  meaning:'belajar persiapan',        tag:'Kanji'},
+    {jp:'復習します',     kana:'ふくしゅうします',rom:'fukushuu shimasu',meaning:'belajar pengulangan',     tag:'Kanji'},
+    {jp:'授業',           kana:'じゅぎょう',     rom:'jugyou',          meaning:'kelas, pelajaran',         tag:'Kanji'},
+    {jp:'講義',           kana:'こうぎ',         rom:'kougi',           meaning:'kuliah',                   tag:'Kanji'},
+    {jp:'予定',           kana:'よてい',         rom:'yotei',           meaning:'acara',                    tag:'Kanji'},
+    {jp:'お知らせ',       kana:'おしらせ',       rom:'oshirase',        meaning:'pengumuman',               tag:'Kanji'},
+    {jp:'予定表',         kana:'よていひょう',   rom:'yoteihyou',       meaning:'jadwal acara',             tag:'Kanji'},
+    {jp:'ごみ箱',         kana:'ごみばこ',       rom:'gomibako',        meaning:'tempat sampah, tong sampah',tag:'Kanji'},
+    {jp:'人形',           kana:'にんぎょう',     rom:'ningyou',         meaning:'boneka, orang-orangan',    tag:'Kanji'},
+    {jp:'花瓶',           kana:'かびん',         rom:'kabin',           meaning:'vas',                      tag:'Kanji'},
+    {jp:'鏡',             kana:'かがみ',         rom:'kagami',          meaning:'cermin',                   tag:'Kanji'},
+    {jp:'引き出し',       kana:'ひきだし',       rom:'hikidashi',       meaning:'laci',                     tag:'Kanji'},
+    {jp:'玄関',           kana:'げんかん',       rom:'genkan',          meaning:'ruang depan',              tag:'Kanji'},
+    {jp:'廊下',           kana:'ろうか',         rom:'rouka',           meaning:'koridor, gang',            tag:'Kanji'},
+    {jp:'壁',             kana:'かべ',           rom:'kabe',            meaning:'dinding',                  tag:'Kanji'},
+    {jp:'池',             kana:'いけ',           rom:'ike',             meaning:'kolam',                    tag:'Kanji'},
+    {jp:'元の所',         kana:'もとのところ',   rom:'moto no tokoro',  meaning:'tempat semula',            tag:'Kanji'},
+    {jp:'周り',           kana:'まわり',         rom:'mawari',          meaning:'sekitar',                  tag:'Kanji'},
+    {jp:'真ん中',         kana:'まんなか',       rom:'mannaka',         meaning:'tengah',                   tag:'Kanji'},
+    {jp:'隅',             kana:'すみ',           rom:'sumi',            meaning:'pojok, sudut',             tag:'Kanji'},
+    {jp:'非常袋',         kana:'ひじょうぶくろ', rom:'hijoubukuro',     meaning:'kantong darurat',          tag:'Kanji'},
+    {jp:'非常時',         kana:'ひじょうじ',     rom:'hijouji',         meaning:'saat darurat',             tag:'Kanji'},
+    {jp:'生活します',     kana:'せいかつします', rom:'seikatsu shimasu',meaning:'hidup',                    tag:'Kanji'},
+    {jp:'懐中電灯',       kana:'かいちゅうでんとう',rom:'kaichuu dentou',meaning:'senter',                  tag:'Kanji'},
+    {jp:'丸い',           kana:'まるい',         rom:'marui',           meaning:'bundar, bulat',            tag:'Kanji'},
+    {jp:'夢を見ます',     kana:'ゆめをみます',   rom:'yume o mimasu',   meaning:'bermimpi',                 tag:'Kanji'},
+    {jp:'嫌[な]',         kana:'いや[な]',       rom:'iya [na]',        meaning:'tidak senang, tidak suka', tag:'Kanji'},
+    {jp:'目が覚めます',   kana:'めがさめます',   rom:'me ga samemasu',  meaning:'bangun, sadar',            tag:'Kanji'},
+  ]
+};
+
+
+
 const DEFAULT_KANJI5 = {
-  id:'kanji5', title:'Kanji Tambahan 3', desc:'Pekerjaan, keluarga, alam & rumah tangga (50 kata)',
+  id:'kanji5', title:'Kanji 3', desc:'Pekerjaan, keluarga, alam & rumah tangga (50 kata)',
   icon:'🏭', iconBg:'ic-purple',
   words:[
     {jp:'機械',   kana:'きかい',       rom:'kikai',       meaning:'mesin',                   tag:'Kanji'},
@@ -1785,7 +1832,7 @@ let wqOrder=[], wqIdx=0, wqCorrect=0, wqWrong=0, wqAnswered=false, wqResults=[];
 let fcWords=[], fcIdx=0, fcFlipped=false;
 
 function getAllSets(){
-  return [VERB_G1,VERB_G2_P1,VERB_G3_P1,KOTOBA_BAB1,KOTOBA_BAB2,KOTOBA_BAB3,KOTOBA_BAB4,JIDOUSHI_1,DEFAULT_KANJI1,DEFAULT_KANJI3,DEFAULT_KANJI5];
+  return [VERB_G1,VERB_G2_P1,VERB_G3_P1,KOTOBA_BAB1,KOTOBA_BAB2,KOTOBA_BAB3,KOTOBA_BAB4,JIDOUSHI_1,DEFAULT_KANJI1,DEFAULT_KANJI3,DEFAULT_KANJI5,DEFAULT_KANJI_TAMBAHAN1];
 }
 
 /* ══════════════════════════════════
@@ -1865,9 +1912,26 @@ function goFlashcardList(){
 function goKanjiDetail(){
   showScreen('kanjiDetailScreen');
 }
+let kanjiListTab='bab';
+const KANJI_TAB_IDS={
+  bab:['kanji1','kanji3','kanji5'],
+  tambahan:['kanji_tambahan1']
+};
+function switchKanjiTab(tab){
+  kanjiListTab=tab;
+  document.querySelectorAll('#kanjiTabs .quiz-tab').forEach(function(b){
+    b.classList.toggle('active', b.dataset.tab===tab);
+  });
+  renderFlashcardList();
+}
 function renderFlashcardList(){
-  const sets=getAllSets().filter(s=>s.id!=='verb_g1'&&s.id!=='verb_g1_p3'&&s.id!=='verb_g1_p4'&&s.id!=='verb_g1_p5'&&s.id!=='verb_g2_p1'&&s.id!=='verb_g2_p2'&&s.id!=='verb_g2_p3'&&s.id!=='verb_g3_p1'&&s.id!=='verb_g3_p2'&&s.id!=='kotoba_bab1'&&s.id!=='kotoba_bab2'&&s.id!=='kotoba_bab3'&&s.id!=='kotoba_bab4'&&s.id!=='jidoushi_1');
+  const activeIds=KANJI_TAB_IDS[kanjiListTab]||[];
+  const sets=getAllSets().filter(s=>activeIds.includes(s.id));
   const list=document.getElementById('flashcardList');
+  if(!sets.length){
+    list.innerHTML='<div class="empty-state"><div class="es-icon">📭</div><p>Belum ada materi kanji.</p></div>';
+    return;
+  }
   list.innerHTML=sets.map(s=>{
     return `
     <div class="session-card">
@@ -1974,7 +2038,10 @@ function renderFlashcard(){
   const w = fcWords[fcIdx];
   document.getElementById('fcProgBar').style.width = ((fcIdx) / (fcWords.length - 1) * 100) + '%';
   document.getElementById('fcCounter').textContent = (fcIdx + 1) + ' / ' + fcWords.length;
-  document.getElementById('ffJp').textContent = w.jp;
+  const ffJpEl = document.getElementById('ffJp');
+  ffJpEl.textContent = w.jp;
+  const jpLen = (w.jp||'').length;
+  ffJpEl.className = 'fc-jp jp-speakable' + (jpLen>=8?' len-lg':jpLen>=5?' len-md':'');
   document.getElementById('ffMeaning').textContent = w.meaning;
   document.getElementById('ffKana').textContent = w.kana || '';
   document.getElementById('ffRom').textContent = w.rom || '';
@@ -2233,6 +2300,12 @@ function shuffle(arr){
   return a;
 }
 
+function isKanjiSession(session){
+  if(!session) return false;
+  const kanjiIds=[].concat(KANJI_TAB_IDS.bab||[], KANJI_TAB_IDS.tambahan||[]);
+  return kanjiIds.includes(session.id);
+}
+
 function startQuiz(quizObj,retTo){
   currentSession=quizObj;
   returnScreen=retTo;
@@ -2254,9 +2327,9 @@ function renderQ(){
   fcTagEl.textContent='';
   fcTagEl.style.display='none';
   const fcJpEl=document.getElementById('fcJp');
-  const kanaText=w.kana||w.jp;
-  fcJpEl.textContent=kanaText;
-  const jpLen=kanaText.length;
+  const questionText = isKanjiSession(currentSession) ? (w.jp||w.kana) : (w.kana||w.jp);
+  fcJpEl.textContent=questionText;
+  const jpLen=questionText.length;
   fcJpEl.className='fc-jp qz-kana-main jp-speakable'+(jpLen>=9?' len-lg':jpLen>=6?' len-md':'');
   document.getElementById('hintPill').textContent='📚 '+(currentSession.desc||currentSession.title);
 
