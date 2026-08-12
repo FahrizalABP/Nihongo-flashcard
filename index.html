@@ -123,7 +123,7 @@ button:active,[onclick]:active{transform:scale(0.94)}
 @media (max-width:480px){
   .wotd-jp{font-size:clamp(22px,6vw,28px)}
   .wotd-meaning{font-size:clamp(18px,4.5vw,24px)}
-  .wq-meaning-text{font-size:24px}
+  .wq-meaning-text{font-size:clamp(20px,7.5vw,24px)}
   .wq-input{font-size:18px;padding:14px}
 }
 
@@ -216,16 +216,18 @@ button:active,[onclick]:active{transform:scale(0.94)}
 .vocab-item:nth-child(5n+3){background:linear-gradient(145deg,#1A1A2E,#16213E);border:1px solid #2C3E6B}
 .vocab-item:nth-child(5n+4){background:linear-gradient(145deg,#1C0E0E,#2C1810);border:1px solid #5C2222}
 .vocab-item:nth-child(5n+5){background:linear-gradient(145deg,#0E1A1C,#0B1A1C);border:1px solid #1A4A52}
-.vocab-item:nth-child(5n+1) .vocab-item-kana{color:#6FB7F0}
-.vocab-item:nth-child(5n+2) .vocab-item-kana{color:#4FD1E8}
-.vocab-item:nth-child(5n+3) .vocab-item-kana{color:#B49AFF}
-.vocab-item:nth-child(5n+4) .vocab-item-kana{color:#FFAA5C}
-.vocab-item:nth-child(5n+5) .vocab-item-kana{color:#5EEAD4}
-.vocab-item-jp{font-family:'Noto Sans JP',sans-serif;font-size:42px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;text-shadow:0 2px 12px rgba(255,255,255,0.1);word-break:keep-all;overflow-wrap:break-word;white-space:pre-line}
-.vocab-item-jp.vocab-len-2{font-size:38px}
-.vocab-item-jp.vocab-len-3{font-size:32px}
-.vocab-item-jp.vocab-len-4{font-size:26px}
-.vocab-item-jp.vocab-len-5{font-size:22px}
+.vocab-item:nth-child(5n+1) .vocab-item-jp{color:#6FB7F0}
+.vocab-item:nth-child(5n+2) .vocab-item-jp{color:#4FD1E8}
+.vocab-item:nth-child(5n+3) .vocab-item-jp{color:#B49AFF}
+.vocab-item:nth-child(5n+4) .vocab-item-jp{color:#FFAA5C}
+.vocab-item:nth-child(5n+5) .vocab-item-jp{color:#5EEAD4}
+.vocab-item-jp{font-family:'Noto Sans JP',sans-serif;font-size:clamp(30px,10vw,42px);font-weight:700;color:#fff;line-height:1.25;margin-bottom:8px;word-break:normal;overflow-wrap:break-word;white-space:normal}
+.vocab-item-jp.vocab-len-2{font-size:clamp(26px,8.5vw,36px)}
+.vocab-item-jp.vocab-len-3{font-size:clamp(22px,7vw,30px)}
+.vocab-item-jp.vocab-len-4{font-size:clamp(19px,6vw,26px)}
+.vocab-item-jp.vocab-len-5{font-size:clamp(17px,5vw,22px)}
+.vocab-item-jp.vocab-len-6{font-size:clamp(15px,4.3vw,19px)}
+.vocab-item-jp.vocab-len-7{font-size:clamp(13px,3.7vw,16px)}
 .vocab-item-kana{font-family:'Noto Sans JP',sans-serif;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1px;white-space:pre-line}
 .vocab-item-rom{font-size:10px;color:rgba(255,255,255,0.35);font-weight:700;margin-bottom:8px;white-space:pre-line}
 .vocab-item-divider{height:1px;background:rgba(255,255,255,0.08);margin:0 0 8px}
@@ -376,9 +378,9 @@ button:active,[onclick]:active{transform:scale(0.94)}
 }
 .fc-tag{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
 .fc-rom{font-size:14px;color:#ffffff;font-weight:700;margin-bottom:4px}
-.fc-jp{font-family:'Noto Sans JP',sans-serif;font-size:clamp(48px, 18vw, 72px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:6px;word-break:break-all;overflow-wrap:break-word}
-.fc-jp.len-md{font-size:clamp(36px, 14vw, 58px)}
-.fc-jp.len-lg{font-size:clamp(28px, 10vw, 44px)}
+.fc-jp{font-family:'Noto Sans JP',sans-serif;font-size:clamp(40px, 15vw, 64px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:6px;word-break:normal;overflow-wrap:break-word;hyphens:auto}
+.fc-jp.len-md{font-size:clamp(30px, 11vw, 46px)}
+.fc-jp.len-lg{font-size:clamp(24px, 8vw, 36px)}
 .fc-jp.qz-jp{font-size:clamp(22px, 7vw, 32px);line-height:1.35;color:var(--muted)}
 .fc-jp.qz-kana-main{font-size:clamp(34px, 13vw, 56px);line-height:1.2;color:#fff}
 .fc-jp.qz-kana-main.len-md{font-size:clamp(28px, 11vw, 46px)}
@@ -419,7 +421,7 @@ button:active,[onclick]:active{transform:scale(0.94)}
 .wq-container{max-width:480px;margin:0 auto;padding:24px 16px 48px}
 .wq-question{text-align:center;margin-bottom:28px}
 .wq-meaning{font-size:13px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;font-weight:900}
-.wq-meaning-text{font-size:32px;font-weight:900;color:var(--red);line-height:1.3;word-break:break-word}
+.wq-meaning-text{font-size:clamp(22px,7vw,32px);font-weight:900;color:var(--red);line-height:1.3;word-break:normal;overflow-wrap:break-word;hyphens:auto;padding:0 4px}
 .wq-input-wrap{margin-bottom:22px}
 .wq-input{
   width:100%;padding:16px;border-radius:var(--r);border:2px solid var(--border);
@@ -505,6 +507,10 @@ button:active,[onclick]:active{transform:scale(0.94)}
 .kd-header h2{font-size:18px;font-weight:900;color:#fff;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kd-header .q-counter{background:rgba(255,255,255,0.08);color:var(--muted);font-size:11px;font-weight:900;padding:5px 10px;border-radius:99px;border:1px solid var(--border);flex-shrink:0;white-space:nowrap}
 .kd-submenu{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 16px 16px}
+#vocabSubmenu{grid-template-columns:1fr 1fr 1fr;gap:8px;padding:18px 12px 16px}
+#vocabSubmenu .kd-sub-btn{padding:14px 4px}
+#vocabSubmenu .kd-sub-icon{font-size:24px}
+#vocabSubmenu .kd-sub-label{font-size:11.5px}
 .kd-sub-btn{display:flex;flex-direction:column;align-items:center;gap:8px;border-radius:16px;padding:18px 8px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .18s;border:none;position:relative;overflow:hidden;user-select:none}
 .kd-sub-btn:hover{transform:translateY(-3px);filter:brightness(1.1)}
 .kd-sub-btn.sb-flash{background:linear-gradient(135deg,#1A3A5C,#0D2137);box-shadow:0 4px 16px rgba(74,158,226,0.3);border:1px solid rgba(74,158,226,0.2)}
@@ -741,6 +747,7 @@ button:active,[onclick]:active{transform:scale(0.94)}
 
   .kd-header { padding: 24px 40px; max-width: 900px; margin: 0 auto; }
   .kd-submenu { padding: 24px 40px; grid-template-columns: 200px 200px; justify-content: start; max-width: 900px; margin: 0 auto; }
+  #vocabSubmenu { grid-template-columns: 200px 200px 200px; }
   .kd-list-wrap { padding: 0 40px; max-width: 900px; margin: 0 auto; }
   .kd-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
 
@@ -917,6 +924,10 @@ button:active,[onclick]:active{transform:scale(0.94)}
       <div class="q-counter" id="vocabItemCount">0 item</div>
     </div>
     <div class="kd-submenu" id="vocabSubmenu">
+      <button class="kd-sub-btn sb-flash" onclick="startVocabFlashcard()">
+        <div class="kd-sub-icon">🗂️</div>
+        <div class="kd-sub-label">Flashcard</div>
+      </button>
       <button class="kd-sub-btn sb-quiz" onclick="startVocabQuiz()">
         <div class="kd-sub-icon">📝</div>
         <div class="kd-sub-label">Mulai Quiz</div>
@@ -927,7 +938,7 @@ button:active,[onclick]:active{transform:scale(0.94)}
       </button>
     </div>
     <div class="vocab-list-wrap">
-      <div class="vocab-list-title">Daftar Kosakata</div>
+      <div class="vocab-list-title" id="vocabListTitle">Daftar Kosakata</div>
       <div class="vocab-grid" id="vocabListBody"></div>
     </div>
   </div>
@@ -980,19 +991,20 @@ button:active,[onclick]:active{transform:scale(0.94)}
       <button class="back-btn" onclick="goBack()">←</button>
       <div class="prog-wrap"><div class="prog-track"><div class="prog-bar" id="fcProgBar"></div></div></div>
       <div class="q-counter" id="fcCounter">1 / 10</div>
+      <button class="back-btn" id="fcDirBtn" onclick="event.stopPropagation(); toggleFcDirection()" title="Ubah urutan kartu">🔀</button>
     </div>
     <div class="flip-card" onclick="flipCard()">
       <div class="flip-inner" id="flipInner">
         <div class="flip-face flip-front">
-          <div class="fc-jp jp-speakable" id="ffJp" onclick="event.stopPropagation(); speakJP(fcWords[fcIdx]&&(fcWords[fcIdx].kana||fcWords[fcIdx].jp))"></div>
-          <div class="flip-hint">👆 Tap untuk lihat arti</div>
+          <div class="fc-jp jp-speakable" id="ffJp" onclick="event.stopPropagation(); speakFrontCard()"></div>
+          <div class="flip-hint" id="ffHintFront">👆 Tap untuk lihat arti</div>
         </div>
         <div class="flip-face flip-back">
-          <div class="fc-tag">ARTI</div>
+          <div class="fc-tag" id="ffTag">ARTI</div>
           <div class="flip-meaning" id="ffMeaning"></div>
           <div class="fc-kana jp-speakable" id="ffKana" onclick="event.stopPropagation(); speakJP(fcWords[fcIdx]&&(fcWords[fcIdx].kana||fcWords[fcIdx].jp))" style="margin-top:12px;font-size:18px"></div>
           <div class="fc-rom" id="ffRom" style="margin-top:4px;font-size:13px"></div>
-          <div class="flip-hint">👆 Tap untuk kembali</div>
+          <div class="flip-hint" id="ffHintBack">👆 Tap untuk kembali</div>
         </div>
       </div>
     </div>
@@ -3497,7 +3509,7 @@ let qOrder=[], qIdx=0, qCorrect=0, qWrong=0, qAnswered=false, qResults=[], qFirs
 let wqOrder=[], wqIdx=0, wqCorrect=0, wqWrong=0, wqAnswered=false, wqResults=[];
 
 /* flashcard state */
-let fcWords=[], fcIdx=0, fcFlipped=false;
+let fcWords=[], fcIdx=0, fcFlipped=false, fcMode='kanji', fcReversed=false;
 
 function getAllSets(){
   return [VERB_G1,VERB_G2_P1,VERB_G3_P1,KOTOBA_BAB1,KOTOBA_BAB2,KOTOBA_BAB3,KOTOBA_BAB4,KOTOBA_BAB5,KOTOBA_BAB6,KOTOBA_BAB7,KOTOBA_BAB8,KOTOBA_BAB9,KOTOBA_BAB10,KOTOBA_BAB11,KOTOBA_BAB12,KOTOBA_BAB13,KOTOBA_BAB14,KOTOBA_BAB15,KOTOBA_BAB16,KOTOBA_BAB17,KOTOBA_BAB18,KOTOBA_BAB19,KOTOBA_BAB20,KOTOBA_BAB21,KOTOBA_BAB22,KOTOBA_BAB23,KOTOBA_BAB24,KOTOBA_BAB25,JIDOUSHI_1,DEFAULT_KANJI2,KANJI_HAL3,KANJI_HAL5,KANJI_HAL7,KANJI_HAL9,KANJI_HAL11,KANJI_HAL13,KANJI_HAL15,KANJI_HAL17,KANJI_HAL19,KANJI_HAL21,KANJI_HAL23,KANJI_HAL25,KANJI_HAL27,KANJI_HAL29,KANJI_HAL31,KANJI_HAL33,KANJI_HAL35,KANJI_HAL37,KANJI_HAL39,KANJI_HAL41];
@@ -3677,6 +3689,7 @@ function startFlashcardSlice(from, to){
   if(!currentKanjiSet) return;
   fcWords=shuffle(currentKanjiSet.words.slice(from, to));
   fcIdx=0; fcFlipped=false;
+  fcMode='kanji';
   showScreen('flashcardScreen');
   renderFlashcard();
 }
@@ -3691,6 +3704,17 @@ function startFlashcard(id){
   if(!set) return;
   fcWords=shuffle(set.words);
   fcIdx=0; fcFlipped=false;
+  fcMode='kanji';
+  showScreen('flashcardScreen');
+  renderFlashcard();
+}
+
+function startVocabFlashcard(){
+  if(!currentVocabSet) return;
+  fcWords=shuffle(currentVocabSet.words);
+  fcIdx=0; fcFlipped=false;
+  fcMode='vocab';
+  returnScreen='vocabListScreen';
   showScreen('flashcardScreen');
   renderFlashcard();
 }
@@ -3706,15 +3730,66 @@ function renderFlashcard(){
   const w = fcWords[fcIdx];
   document.getElementById('fcProgBar').style.width = ((fcIdx) / (fcWords.length - 1) * 100) + '%';
   document.getElementById('fcCounter').textContent = (fcIdx + 1) + ' / ' + fcWords.length;
+  
   const ffJpEl = document.getElementById('ffJp');
-  ffJpEl.textContent = w.jp;
-  const jpLen = (w.jp||'').length;
-  ffJpEl.className = 'fc-jp jp-speakable' + (jpLen>=8?' len-lg':jpLen>=5?' len-md':'');
-  document.getElementById('ffMeaning').textContent = w.meaning;
-  document.getElementById('ffKana').textContent = w.kana || '';
-  document.getElementById('ffRom').textContent = w.rom || '';
-  document.getElementById('ffMeaning').textContent = w.meaning;
+  const ffMeaningEl = document.getElementById('ffMeaning');
+  const ffKanaEl = document.getElementById('ffKana');
+  const ffRomEl = document.getElementById('ffRom');
+  const ffTagEl = document.getElementById('ffTag');
+  const ffHintFront = document.getElementById('ffHintFront');
+  const ffHintBack = document.getElementById('ffHintBack');
+
+  // Kata Jepang utama & Kata Jepang sekunder tergantung mode
+  const jpMain = (fcMode === 'vocab') ? (w.kana || w.jp) : w.jp;
+  const jpSecondary = (fcMode === 'vocab') ? (w.jp || '') : (w.kana || '');
+
+  if(!fcReversed){
+    // NORMAL: depan = Jepang, belakang = Arti (Indonesia)
+    ffJpEl.textContent = jpMain;
+    const jpLen = (jpMain||'').length;
+    ffJpEl.className = 'fc-jp jp-speakable' + (jpLen>=8?' len-lg':jpLen>=5?' len-md':'');
+    ffMeaningEl.textContent = w.meaning;
+    ffKanaEl.textContent = jpSecondary;
+    ffKanaEl.style.display = (fcMode==='vocab') ? (jpSecondary ? 'block':'none') : 'block';
+    ffRomEl.textContent = w.rom || '';
+    ffRomEl.style.display = w.rom ? 'block' : 'none';
+    ffTagEl.textContent = 'ARTI';
+    ffHintFront.textContent = '👆 Tap untuk lihat arti';
+    ffHintBack.textContent = '👆 Tap untuk kembali';
+  } else {
+    // DIBALIK: depan = Arti (Indonesia), belakang = Jepang
+    ffJpEl.textContent = w.meaning;
+    const meaningLen = (w.meaning||'').length;
+    ffJpEl.className = 'fc-jp jp-speakable' + (meaningLen>=15?' len-lg':meaningLen>=7?' len-md':'');
+    ffMeaningEl.textContent = jpMain;
+    ffKanaEl.textContent = jpSecondary;
+    ffKanaEl.style.display = (fcMode==='vocab') ? (jpSecondary ? 'block':'none') : 'block';
+    ffRomEl.textContent = w.rom || '';
+    ffRomEl.style.display = w.rom ? 'block' : 'none';
+    ffTagEl.textContent = 'BAHASA JEPANG';
+    ffHintFront.textContent = '👆 Tap untuk lihat tulisan Jepang';
+    ffHintBack.textContent = '👆 Tap untuk kembali';
+  }
+
+  const dirBtn = document.getElementById('fcDirBtn');
+  if(dirBtn) dirBtn.title = fcReversed ? 'Tampilkan Jepang di depan' : 'Tampilkan Indonesia di depan';
+
   fcFlipped = false;
+}
+function toggleFcDirection(){
+  fcReversed = !fcReversed;
+  fcFlipped = false;
+  const inner = document.getElementById('flipInner');
+  inner.style.transition = 'none';
+  inner.classList.remove('flipped');
+  inner.getBoundingClientRect();
+  inner.style.transition = '';
+  renderFlashcard();
+}
+function speakFrontCard(){
+  // Selalu ucapkan kata Jepangnya, terlepas dari sisi mana yang sedang tampil di depan
+  const w = fcWords[fcIdx];
+  if(w) speakJP(w.kana || w.jp);
 }
 function flipCard(){
   fcFlipped=!fcFlipped;
@@ -3786,6 +3861,7 @@ function confirmReview(){
   if(!combined.length) return;
   fcWords=shuffle(combined);
   fcIdx=0; fcFlipped=false;
+  fcMode='kanji';
   closeReviewModal();
   returnScreen='flashcardListScreen';
   showScreen('flashcardScreen');
@@ -3906,13 +3982,13 @@ function showVocabList(id){
   
   const body=document.getElementById('vocabListBody');
   body.innerHTML=set.words.map(w=>{
-    const len=(w.jp||'').length;
-    const lenClass = len>=5?' vocab-len-5':len===4?' vocab-len-4':len===3?' vocab-len-3':len===2?' vocab-len-2':'';
+    const mainText=w.kana||w.jp;
+    const len=(mainText||'').length;
+    const lenClass = len>=7?' vocab-len-7':len===6?' vocab-len-6':len===5?' vocab-len-5':len===4?' vocab-len-4':len===3?' vocab-len-3':len===2?' vocab-len-2':'';
     const rom=w.rom||w.kana||'';
     return `
     <div class="vocab-item">
-      <div class="vocab-item-jp${lenClass} jp-speakable" onclick='event.stopPropagation(); speakJP(${JSON.stringify(w.kana||w.jp)})'>${w.jp}</div>
-      ${w.kana?`<div class="vocab-item-kana">${w.kana}</div>`:''}
+      <div class="vocab-item-jp${lenClass} jp-speakable" onclick='event.stopPropagation(); speakJP(${JSON.stringify(w.kana||w.jp)})'>${mainText}</div>
       ${rom?`<div class="vocab-item-rom">${rom}</div>`:''}
       <div class="vocab-item-divider"></div>
       <div class="vocab-item-meaning">${w.meaning}</div>
